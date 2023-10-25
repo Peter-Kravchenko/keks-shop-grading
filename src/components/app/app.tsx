@@ -14,7 +14,7 @@ function App(): JSX.Element {
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
-          <Route path={AppRoute.Main} element={<MainPage />} />{' '}
+          <Route path={AppRoute.Main} element={<MainPage />} />
           <Route path={`${AppRoute.Product}`} element={<ProductPage />} />
           <Route
             path={AppRoute.Favorites}

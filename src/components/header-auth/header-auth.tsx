@@ -1,4 +1,4 @@
-function Header(): JSX.Element {
+function HeaderAuth(): JSX.Element {
   return (
     <header className="header header--authorized __web-inspector-hide-shortcut__">
       <div className="container">
@@ -58,4 +58,4 @@ function Header(): JSX.Element {
   );
 }
 
-export default Header;
+export default HeaderAuth;
