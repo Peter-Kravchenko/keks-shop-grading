@@ -69,3 +69,13 @@ export enum NameSpace {
   Reviews = 'REVIEWS',
   User = 'USER',
 }
+
+export enum ProductBlock {
+  Catalog = 'catalog__item',
+  Main = 'random-main__item',
+}
+
+export const ProductImgSize = {
+  Small: { width: 241, height: 245 },
+  Large: { width: 326, heigh: 332 },
+} as const;

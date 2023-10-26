@@ -12,7 +12,6 @@ function ProtectedRoute({
   redirectTo,
   children,
 }: TProtectedRouteProps): JSX.Element {
-  //добавить dispatch authStatus и убрать заглушку
   const authorizationStatus = AuthorizationStatus.NoAuth;
 
   return restrictedFor === authorizationStatus ? (

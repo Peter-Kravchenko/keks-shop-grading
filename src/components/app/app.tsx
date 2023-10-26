@@ -10,13 +10,25 @@ import SignUpPage from '../../pages/sign-up-page/sign-up-page';
 import LoginPage from '../../pages/login-page/login-page';
 import HistoryRouter from '../history-route/history-route';
 import browserHistory from '../../browser-history';
+import { useAppDispatch } from '../../hooks';
+import { useEffect } from 'react';
+import { fetchLastReview, fetchProducts } from '../../store/api-actions';
+import CatalogPage from '../../pages/catalog-page/catalog-page';
 
 function App(): JSX.Element {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+    dispatch(fetchLastReview());
+  }, [dispatch]);
+
   return (
     <HelmetProvider>
       <HistoryRouter history={browserHistory}>
         <Routes>
           <Route path={AppRoute.Main} element={<MainPage />} />
+          <Route path={AppRoute.Catalog} element={<CatalogPage />} />
           <Route path={`${AppRoute.Product}`} element={<ProductPage />} />
           <Route
             path={AppRoute.Favorites}
@@ -33,7 +45,7 @@ function App(): JSX.Element {
             path={AppRoute.SignUp}
             element={
               <ProtectedRoute
-                restrictedFor={AuthorizationStatus.Auth} //далее исправить на NotAuth
+                restrictedFor={AuthorizationStatus.Auth} //далее убрать заглушку
                 redirectTo={AppRoute.Main}
               >
                 <SignUpPage />
@@ -44,7 +56,7 @@ function App(): JSX.Element {
             path={AppRoute.Login}
             element={
               <ProtectedRoute
-                restrictedFor={AuthorizationStatus.Auth} //далее исправить на NotAuth
+                restrictedFor={AuthorizationStatus.Auth} //далее убрать заглушку
                 redirectTo={AppRoute.Main}
               >
                 <LoginPage />
