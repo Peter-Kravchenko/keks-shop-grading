@@ -1,5 +1,5 @@
 import { HelmetProvider } from 'react-helmet-async';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import ProductPage from '../../pages/product-page/product-page';
 import MainPage from '../../pages/main-page/main-page';
@@ -8,11 +8,13 @@ import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import SignUpPage from '../../pages/sign-up-page/sign-up-page';
 import LoginPage from '../../pages/login-page/login-page';
+import HistoryRouter from '../history-route/history-route';
+import browserHistory from '../../browser-history';
 
 function App(): JSX.Element {
   return (
     <HelmetProvider>
-      <BrowserRouter>
+      <HistoryRouter history={browserHistory}>
         <Routes>
           <Route path={AppRoute.Main} element={<MainPage />} />
           <Route path={`${AppRoute.Product}`} element={<ProductPage />} />
@@ -51,7 +53,7 @@ function App(): JSX.Element {
           />
           <Route path="/*" element={<NotFoundPage />} />
         </Routes>
-      </BrowserRouter>
+      </HistoryRouter>
     </HelmetProvider>
   );
 }

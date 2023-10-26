@@ -58,3 +58,12 @@ export enum RequestStatus {
   Success = 'Success',
   Rejected = 'Rejected',
 }
+
+export enum NameSpace {
+  App = 'APP',
+  Product = 'PRODUCT',
+  Products = 'PRODUCTS',
+  Favorites = 'FAVORITES',
+  Reviews = 'REVIEWS',
+  User = 'USER',
+}
