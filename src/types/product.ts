@@ -1,6 +1,6 @@
 import { ProductCategory, ProductType } from '../const';
 
-export type TProducts = {
+export type TProduct = {
   id: string;
   title: string;
   category: ProductCategory;

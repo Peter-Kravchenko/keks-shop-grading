@@ -42,6 +42,7 @@ export enum APIRoute {
   Logout = '/users/logout',
   Products = '/products',
   Reviews = '/reviews',
+  LastReview = '/reviews/getLast',
   SignUp = '/users/registration',
   UploadImg = '/users/upload',
 }
@@ -61,9 +62,10 @@ export enum RequestStatus {
 
 export enum NameSpace {
   App = 'APP',
+  Favorites = 'FAVORITES',
+  LastReview = 'LAST_REVIEW',
   Product = 'PRODUCT',
   Products = 'PRODUCTS',
-  Favorites = 'FAVORITES',
   Reviews = 'REVIEWS',
   User = 'USER',
 }
