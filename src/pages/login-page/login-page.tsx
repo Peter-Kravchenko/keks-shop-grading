@@ -9,7 +9,7 @@ function LoginPage(): JSX.Element {
               src="img/svg/hero-keks.svg"
               width={727}
               height={569}
-              alt="Картика кота."
+              alt="Картинка кота."
             />
           </div>
         </div>

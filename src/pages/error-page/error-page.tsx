@@ -1,10 +1,10 @@
 import Footer from '../../components/footer/footer';
-import HeaderAuth from '../../components/header-auth/header-auth';
+import Header from '../../components/header/header';
 
 function ErrorPage(): JSX.Element {
   return (
     <div className="wrapper">
-      <HeaderAuth />
+      <Header />
       <main>
         <h1 className="visually-hidden">Ошибка загрузки страницы</h1>
         <section className="error-loading">

@@ -10,18 +10,31 @@ import SignUpPage from '../../pages/sign-up-page/sign-up-page';
 import LoginPage from '../../pages/login-page/login-page';
 import HistoryRouter from '../history-route/history-route';
 import browserHistory from '../../browser-history';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
-import { fetchLastReview, fetchProducts } from '../../store/api-actions';
+import {
+  checkAuth,
+  fetchLastReview,
+  fetchProducts,
+} from '../../store/api-actions';
 import CatalogPage from '../../pages/catalog-page/catalog-page';
+import { getAuthStatus } from '../../store/user-data/user-data.selectors';
+import Loader from '../loader/loader';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    dispatch(checkAuth());
     dispatch(fetchProducts());
     dispatch(fetchLastReview());
   }, [dispatch]);
+
+  const authStatus = useAppSelector(getAuthStatus);
+
+  if (authStatus === AuthorizationStatus.Unknown) {
+    return <Loader />;
+  }
 
   return (
     <HelmetProvider>

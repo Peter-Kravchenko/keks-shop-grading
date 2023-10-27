@@ -15,6 +15,8 @@ import ReviewForm from '../../components/review-form/review-form';
 import ReviewsFilter from '../../components/reviews-filter/reviews-filter';
 import ProductDetails from '../../components/product-details/product-details';
 import BackButton from '../../components/buttons/back-button/back-button';
+import Header from '../../components/header/header';
+import Loader from '../../components/loader/loader';
 
 function ProductPage(): JSX.Element {
   const { id } = useParams();
@@ -38,12 +40,12 @@ function ProductPage(): JSX.Element {
   const reviews = useAppSelector(getReviews);
 
   if (productFetchingStatus === RequestStatus.Pending) {
-    return <div>Loading</div>;
+    return <Loader />;
   }
 
   return productFetchingStatus === RequestStatus.Success && product ? (
     <div className="wrapper">
-      {/* <HeaderAuth /> */}
+      <Header />
       <main>
         <h1 className="visually-hidden">Карточка: пользователь авторизован</h1>
         <BackButton />

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Footer from '../../components/footer/footer';
-import HeaderAuth from '../../components/header-auth/header-auth';
+import Header from '../../components/header/header';
 import { AppRoute } from '../../const';
 import CatalogFilters from '../../components/catalog-filters/catalog-filters';
 import CatalogCardsList from '../../components/catalog-cards-list/catalog-cards-list';
@@ -8,7 +8,7 @@ import CatalogCardsList from '../../components/catalog-cards-list/catalog-cards-
 function CatalogPage(): JSX.Element {
   return (
     <div className="wrapper">
-      <HeaderAuth />
+      <Header />
       <main>
         <h1 className="visually-hidden">Каталог товаров</h1>
         <div className="back-link">

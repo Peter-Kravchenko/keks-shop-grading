@@ -106,7 +106,7 @@ export const postReview = createAsyncThunk<
 );
 
 export const fetchLastReview = createAsyncThunk<TReview, undefined, TExtra>(
-  `${NameSpace.Reviews}/fetchLastReview`,
+  `${NameSpace.LastReview}/fetchLastReview`,
   async (_arg, { extra: api }) => {
     const { data } = await api
       .get<TReview>(APIRoute.LastReview)

@@ -1,10 +1,10 @@
 import Footer from '../../components/footer/footer';
-import HeaderAuth from '../../components/header-auth/header-auth';
+import Header from '../../components/header/header';
 
 function FavoritesPage(): JSX.Element {
   return (
     <div className="wrapper">
-      <HeaderAuth />
+      <Header />
       <main>
         <div className="favorites-page">
           <h1 className="visually-hidden">Избранное</h1>

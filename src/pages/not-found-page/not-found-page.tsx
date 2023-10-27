@@ -1,9 +1,9 @@
-import HeaderAuth from '../../components/header-auth/header-auth';
+import Header from '../../components/header/header';
 
 function NotFoundPage(): JSX.Element {
   return (
     <div className="wrapper">
-      <HeaderAuth />
+      <Header />
       <main>
         <h1 className="visually-hidden">404</h1>
         <section className="error-page">

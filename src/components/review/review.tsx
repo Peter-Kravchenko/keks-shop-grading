@@ -57,21 +57,16 @@ function Review({ review }: TReviewProps): JSX.Element {
           </svg>
         </div>
         <div className="review__text-wrapper">
-          <p className="review__text">{review.positive}</p>
-          <p className="review__text">{review.negative}</p>
+          {review.positive && <p className="review__text">{review.positive}</p>}
+          {review.negative && <p className="review__text">{review.negative}</p>}
         </div>
         <div className="review__image-wrapper">
           <picture>
-            <source
-              type="image/webp"
-              srcSet={`${review.user.avatarUrl}, ${review.user.avatarUrl} 2x`}
-            />
             <img
               src={review.user.avatarUrl}
-              srcSet={`${review.user.avatarUrl} 2x`}
               width={162}
               height={162}
-              alt="Кот"
+              alt={review.user.name}
             />
           </picture>
         </div>
