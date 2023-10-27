@@ -18,7 +18,12 @@ function MainPage(): JSX.Element {
       <main>
         <Hero />
         <RandomCardsLict randomProducts={products.slice(0, 3)} />
-        {/* <Review review={lastReview} /> */}
+        <section className="last-review">
+          <div className="container">
+            <h2 className="last-review__title">последний отзыв</h2>
+            {/* <Review review={lastReview} /> */}
+          </div>
+        </section>
         <Map />
       </main>
       <Footer />

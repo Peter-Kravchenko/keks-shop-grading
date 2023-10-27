@@ -1,6 +1,18 @@
-function ShowMoreButton(): JSX.Element {
+import cn from 'classnames';
+
+type TShowMoreButtonProps = {
+  block?: string;
+};
+
+function ShowMoreButton({ block = '' }: TShowMoreButtonProps): JSX.Element {
   return (
-    <button className="btn btn--second" type="button">
+    <button
+      className={cn({
+        ['btn btn--second']: true,
+        ['comments__button']: block,
+      })}
+      type="button"
+    >
       Показать еще
     </button>
   );

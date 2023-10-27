@@ -31,7 +31,7 @@ export enum AppRoute {
   Login = '/login',
   Main = '/Index',
   NotFound = '/404',
-  Product = '/ProductPage',
+  Product = '/ProductCard',
   SignUp = '/SignUp',
 }
 
@@ -79,3 +79,11 @@ export const ProductImgSize = {
   Small: { width: 241, height: 245 },
   Large: { width: 326, heigh: 332 },
 } as const;
+
+export const ratingMap = {
+  '5': 'perfect',
+  '4': 'good',
+  '3': 'not bad',
+  '2': 'badly',
+  '1': 'terribly',
+};

@@ -1,6 +1,7 @@
 import cn from 'classnames';
-import { ProductBlock, ProductImgSize } from '../../const';
+import { AppRoute, ProductBlock, ProductImgSize } from '../../const';
 import { TProducts } from '../../types/products';
+import { Link } from 'react-router-dom';
 
 type TCardProps = {
   product: TProducts;
@@ -16,7 +17,10 @@ function Card({ product, productBlock }: TCardProps): JSX.Element {
   return (
     <li className={`${productBlock}`}>
       <div className="card-item card-item--big">
-        <a className="card-item__img-link" href="#">
+        <Link
+          to={`${AppRoute.Product}/${product.id}`}
+          className="card-item__img-link"
+        >
           <div className="card-item__img-wrapper">
             <picture>
               <source
@@ -32,7 +36,7 @@ function Card({ product, productBlock }: TCardProps): JSX.Element {
             </picture>
           </div>
           {product.isNew && <span className="card-item__label">Новинка</span>}
-        </a>
+        </Link>
         <button
           className={cn({
             ['card-item__favorites']: true,

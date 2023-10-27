@@ -30,9 +30,9 @@ export const fetchProducts = createAsyncThunk<TProducts[], undefined, TExtra>(
 
 export const fetchProduct = createAsyncThunk<TProduct, TProduct['id'], TExtra>(
   `${NameSpace.Product}/fetchProduct`,
-  async (productId, { extra: api }) => {
+  async (id, { extra: api }) => {
     const { data } = await api
-      .get<TProduct>(`${APIRoute.Products}/${productId}`)
+      .get<TProduct>(`${APIRoute.Products}/${id}`)
       .catch((err: AxiosError) => {
         throw toast.error(err.message);
       });
@@ -54,9 +54,9 @@ export const fetchFavorites = createAsyncThunk<TProduct[], undefined, TExtra>(
 
 export const addFavorite = createAsyncThunk<TProduct, TProduct['id'], TExtra>(
   `${NameSpace.Favorites}/addFavorite`,
-  async (productId, { extra: api }) => {
+  async (id, { extra: api }) => {
     const { data } = await api
-      .put<TProduct>(`${APIRoute.Favorites}/${productId}`)
+      .put<TProduct>(`${APIRoute.Favorites}/${id}`)
       .catch((err: AxiosError) => {
         throw toast.error(err.message);
       });
@@ -68,23 +68,20 @@ export const deleteFavorite = createAsyncThunk<
   TProduct,
   TProduct['id'],
   TExtra
->(
-  `${NameSpace.Favorites}/deleteFavorite`,
-  async (productId, { extra: api }) => {
-    const { data } = await api
-      .delete<TProduct>(`${APIRoute.Favorites}/${productId}`)
-      .catch((err: AxiosError) => {
-        throw toast.error(err.message);
-      });
-    return data;
-  }
-);
+>(`${NameSpace.Favorites}/deleteFavorite`, async (id, { extra: api }) => {
+  const { data } = await api
+    .delete<TProduct>(`${APIRoute.Favorites}/${id}`)
+    .catch((err: AxiosError) => {
+      throw toast.error(err.message);
+    });
+  return data;
+});
 
 export const fetchReviews = createAsyncThunk<TReview[], TReview['id'], TExtra>(
   `${NameSpace.Reviews}/fetchReviews`,
-  async (productId, { extra: api }) => {
+  async (id, { extra: api }) => {
     const { data } = await api
-      .get<TReview[]>(`${APIRoute.Reviews}/${productId}`)
+      .get<TReview[]>(`${APIRoute.Reviews}/${id}`)
       .catch((err: AxiosError) => {
         throw toast.error(err.message);
       });
@@ -94,13 +91,13 @@ export const fetchReviews = createAsyncThunk<TReview[], TReview['id'], TExtra>(
 
 export const postReview = createAsyncThunk<
   TReview[],
-  { reviewData: TPostReview; productId: TProduct['id'] },
+  { reviewData: TPostReview; id: TProduct['id'] },
   TExtra
 >(
   `${NameSpace.Reviews}/postReview`,
-  async ({ reviewData, productId }, { extra: api }) => {
+  async ({ reviewData, id }, { extra: api }) => {
     const { data } = await api
-      .post<TReview[]>(`${APIRoute.Reviews}/${productId}`, reviewData)
+      .post<TReview[]>(`${APIRoute.Reviews}/${id}`, reviewData)
       .catch((err: AxiosError) => {
         throw toast.error(err.message);
       });

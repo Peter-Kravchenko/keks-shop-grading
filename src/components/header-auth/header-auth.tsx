@@ -21,11 +21,10 @@ function HeaderAuth(): JSX.Element {
                 <picture>
                   <source
                     type="image/webp"
-                    srcSet="img/content/user-avatar.webp, img/content/user-avatar@2x.webp 2x"
+                    src="img/content/user-avatar.webp"
                   />
                   <img
                     src="img/content/user-avatar.jpg"
-                    srcSet="img/content/user-avatar@2x.jpg 2x"
                     width={62}
                     height={62}
                     alt="Аватар пользователя."
