@@ -2,12 +2,16 @@ import { Link } from 'react-router-dom';
 import { TProduct } from '../../types/product';
 import { AppRoute } from '../../const';
 import CatalogCardsList from '../catalog-cards-list/catalog-cards-list';
+import { useAppDispatch } from '../../hooks';
+import { deleteFavorite } from '../../store/api-actions';
 
 type TFavoritesSectionProps = {
   favorites: TProduct[];
 };
 
 function FavoritesSection({ favorites }: TFavoritesSectionProps): JSX.Element {
+  const dispatch = useAppDispatch();
+
   return (
     <>
       <section className="number-of-favourites favorites-page__qty">
@@ -35,7 +39,15 @@ function FavoritesSection({ favorites }: TFavoritesSectionProps): JSX.Element {
         <div className="container">
           <h2 className="visually-hidden">Избранные товары</h2>
           <div className="favourites__button">
-            <button className="btn btn--second" type="button">
+            <button
+              className="btn btn--second"
+              type="button"
+              onClick={() =>
+                favorites.forEach((favorite) => {
+                  dispatch(deleteFavorite(favorite.id));
+                })
+              }
+            >
               Очистить
             </button>
           </div>
