@@ -1,17 +1,27 @@
 import cn from 'classnames';
+import { useAppDispatch } from '../../../hooks';
+import { showMoreProductsAction } from '../../../store/app-process/app-process.slice';
 
 type TShowMoreButtonProps = {
-  block?: string;
+  reviewBlock?: boolean;
 };
 
-function ShowMoreButton({ block = '' }: TShowMoreButtonProps): JSX.Element {
+function ShowMoreButton({
+  reviewBlock = false,
+}: TShowMoreButtonProps): JSX.Element {
+  const dispatch = useAppDispatch();
+  const handleShowMoreClick = () => {
+    dispatch(showMoreProductsAction());
+  };
+
   return (
     <button
       className={cn({
         ['btn btn--second']: true,
-        ['comments__button']: block,
+        ['comments__button']: reviewBlock,
       })}
       type="button"
+      onClick={handleShowMoreClick}
     >
       Показать еще
     </button>

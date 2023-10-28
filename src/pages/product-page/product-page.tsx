@@ -7,7 +7,7 @@ import {
   getFetchingStatus,
   getProduct,
 } from '../../store/product-data/product-data.selectors';
-import { RequestStatus } from '../../const';
+import { AppRoute, RequestStatus } from '../../const';
 import { getReviews } from '../../store/reviews-data/reviews-data.selectors';
 import ShowMoreButton from '../../components/buttons/show-more-button/show-more-button';
 import Review from '../../components/review/review';
@@ -48,7 +48,7 @@ function ProductPage(): JSX.Element {
       <Header />
       <main>
         <h1 className="visually-hidden">Карточка: пользователь авторизован</h1>
-        <BackButton />
+        <BackButton rote={AppRoute.Catalog} />
         <ProductDetails product={product} />
         <ReviewForm />
         <ReviewsFilter />
@@ -61,7 +61,7 @@ function ProductPage(): JSX.Element {
               ))}
             </div>
             <div className="comments__show-more">
-              <ShowMoreButton block="review" />
+              <ShowMoreButton reviewBlock />
             </div>
           </div>
         </section>

@@ -5,8 +5,10 @@ import { productData } from './product-data/product-data.slice';
 import { reviewsData } from './reviews-data/reviews-data.slice';
 import { lastReviewData } from './last-review-data/last-review-data.slice';
 import { userData } from './user-data/user-data.slice';
+import { appProcess } from './app-process/app-process.slice';
 
 export const rootReducer = combineReducers({
+  [NameSpace.App]: appProcess.reducer,
   [NameSpace.Products]: productsData.reducer,
   [NameSpace.Product]: productData.reducer,
   [NameSpace.Reviews]: reviewsData.reducer,

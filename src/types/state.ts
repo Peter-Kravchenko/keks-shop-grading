@@ -8,6 +8,10 @@ import { TUser } from './user';
 export type TAppState = ReturnType<typeof store.getState>;
 export type TAppDispatch = typeof store.dispatch;
 
+export type TAppProcess = {
+  productsCountOnPage: number;
+};
+
 export type TProductsData = {
   products: TProducts[];
   fetchingStatus: RequestStatus;

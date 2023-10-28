@@ -1,12 +1,32 @@
+import { useEffect } from 'react';
 import { ProductBlock } from '../../const';
-import { useAppSelector } from '../../hooks';
-import { getProducts } from '../../store/products-data/products-data.selectors';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { getProductsCounOnPage } from '../../store/app-process/app-process.secectors';
+import { TProducts } from '../../types/products';
 import ShowMoreButton from '../buttons/show-more-button/show-more-button';
+import ToTheBeginingButton from '../buttons/to-the-begining-button/to-the-begining-button';
 import Card from '../card/card';
 import ProductNotFound from '../product-not-found/product-not-found';
+import { resetProductsCountAction } from '../../store/app-process/app-process.slice';
 
-function CatalogCardsList(): JSX.Element {
-  const products = useAppSelector(getProducts);
+type TCatalogCardsListProps = {
+  products: TProducts[];
+};
+
+function CatalogCardsList({ products }: TCatalogCardsListProps): JSX.Element {
+  const dispatch = useAppDispatch();
+
+  const maxProductsCountOnPage = useAppSelector(getProductsCounOnPage);
+
+  const productsOnPage = products.slice(
+    0,
+    Math.min(products.length, maxProductsCountOnPage)
+  );
+  const isShowMore = products.length > productsOnPage.length;
+
+  useEffect(() => {
+    dispatch(resetProductsCountAction());
+  }, [dispatch]);
 
   return (
     <section className="catalog">
@@ -14,9 +34,9 @@ function CatalogCardsList(): JSX.Element {
         <h2 className="visually-hidden">Каталог</h2>
         <div className="catalog__wrapper">
           <ul className="catalog__list">
-            {products.length === 0 && <ProductNotFound />}
-            {products.length > 0 &&
-              products.map((product) => (
+            {productsOnPage.length === 0 && <ProductNotFound />}
+            {productsOnPage.length > 0 &&
+              productsOnPage.map((product) => (
                 <Card
                   key={product.id}
                   product={product}
@@ -25,7 +45,7 @@ function CatalogCardsList(): JSX.Element {
               ))}
           </ul>
           <div className="catalog__button-wrapper">
-            <ShowMoreButton />
+            {isShowMore ? <ShowMoreButton /> : <ToTheBeginingButton />}
           </div>
         </div>
       </div>
