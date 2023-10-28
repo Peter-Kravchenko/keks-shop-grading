@@ -2,13 +2,17 @@ import cn from 'classnames';
 import { AppRoute, ProductBlock, ProductImgSize } from '../../const';
 import { TProducts } from '../../types/products';
 import { Link } from 'react-router-dom';
+import FavoritesButton from '../buttons/favorites-button/favorites-button';
 
-type TCardProps = {
+type TProductCardProps = {
   product: TProducts;
   productBlock: ProductBlock;
 };
 
-function Card({ product, productBlock }: TCardProps): JSX.Element {
+function ProductCard({
+  product,
+  productBlock,
+}: TProductCardProps): JSX.Element {
   const imgSize =
     productBlock === ProductBlock.Catalog
       ? ProductImgSize.Large
@@ -23,13 +27,9 @@ function Card({ product, productBlock }: TCardProps): JSX.Element {
         >
           <div className="card-item__img-wrapper">
             <picture>
-              <source
-                type="image/webp"
-                srcSet={`${product.previewImageWebp}, ${product.previewImageWebp} 2x`}
-              />
+              <source type="image/webp" src={product.previewImageWebp} />
               <img
                 src={product.previewImageWebp}
-                srcSet={`${product.previewImage} 2x`}
                 alt={product.title}
                 {...imgSize}
               />
@@ -37,28 +37,21 @@ function Card({ product, productBlock }: TCardProps): JSX.Element {
           </div>
           {product.isNew && <span className="card-item__label">Новинка</span>}
         </Link>
-        <button
-          className={cn({
-            ['card-item__favorites']: true,
-            ['card-item__favorites--active']: product.isFavorite,
-          })}
-        >
-          <span className="visually-hidden">Добавить в избранное</span>
-          <svg width={51} height={41} aria-hidden="true">
-            <use xlinkHref="#icon-like" />
-          </svg>
-        </button>
+        <FavoritesButton id={product.id} isFavorite={product.isFavorite} />
         {productBlock === ProductBlock.Catalog && (
           <span className="card-item__price">{product.price} p</span>
         )}
-        <a className="card-item__link" href="#">
+        <Link
+          to={`${AppRoute.Product}/${product.id}`}
+          className="card-item__link"
+        >
           <h3 className="card-item__title">
             <span>{product.title}</span>
           </h3>
-        </a>
+        </Link>
       </div>
     </li>
   );
 }
 
-export default Card;
+export default ProductCard;

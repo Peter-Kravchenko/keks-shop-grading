@@ -5,7 +5,7 @@ import { getProductsCounOnPage } from '../../store/app-process/app-process.secec
 import { TProducts } from '../../types/products';
 import ShowMoreButton from '../buttons/show-more-button/show-more-button';
 import ToTheBeginingButton from '../buttons/to-the-begining-button/to-the-begining-button';
-import Card from '../card/card';
+import ProductCard from '../product-card/product-card';
 import ProductNotFound from '../product-not-found/product-not-found';
 import { resetProductsCountAction } from '../../store/app-process/app-process.slice';
 
@@ -37,7 +37,7 @@ function CatalogCardsList({ products }: TCatalogCardsListProps): JSX.Element {
             {productsOnPage.length === 0 && <ProductNotFound />}
             {productsOnPage.length > 0 &&
               productsOnPage.map((product) => (
-                <Card
+                <ProductCard
                   key={product.id}
                   product={product}
                   productBlock={ProductBlock.Catalog}

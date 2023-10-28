@@ -14,6 +14,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
 import {
   checkAuth,
+  fetchFavorites,
   fetchLastReview,
   fetchProducts,
 } from '../../store/api-actions';
@@ -27,6 +28,7 @@ function App(): JSX.Element {
   useEffect(() => {
     dispatch(checkAuth());
     dispatch(fetchProducts());
+    dispatch(fetchFavorites());
     dispatch(fetchLastReview());
   }, [dispatch]);
 

@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../../const';
-import { useAppDispatch } from '../../../hooks';
-import { logout } from '../../../store/api-actions';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { fetchFavorites, logout } from '../../../store/api-actions';
+import { useEffect } from 'react';
+import { getFavorites } from '../../../store/favorites-data/favorites-data.selectors';
 
 type THeaderButtonsProps = {
   isAuth: boolean;
@@ -9,6 +11,14 @@ type THeaderButtonsProps = {
 
 function HeaderButtons({ isAuth }: THeaderButtonsProps): JSX.Element {
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (isAuth) {
+      dispatch(fetchFavorites());
+    }
+  }, [dispatch, isAuth]);
+
+  const favouritesCount = useAppSelector(getFavorites).length;
 
   return (
     <div className="header__buttons">
@@ -20,6 +30,11 @@ function HeaderButtons({ isAuth }: THeaderButtonsProps): JSX.Element {
                 <use xlinkHref="#icon-favourite" />
               </svg>
             </span>
+            {favouritesCount > 0 && (
+              <span className="header__favourite-number">
+                {favouritesCount}
+              </span>
+            )}
             <span className="visually-hidden">Избранное</span>
           </Link>
           <div className="header__buttons-authorized">

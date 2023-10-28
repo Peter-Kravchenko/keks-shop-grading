@@ -9,6 +9,7 @@ import { TPostReview, TReview } from '../types/review';
 import { TAuthData } from '../types/auth-data';
 import { TUser } from '../types/user';
 import { dropToken, saveToken } from '../services/token';
+import { TSignUpData } from '../types/sign-in-data';
 
 type TExtra = {
   dispatch: TAppDispatch;
@@ -54,12 +55,9 @@ export const fetchFavorites = createAsyncThunk<TProduct[], undefined, TExtra>(
 
 export const addFavorite = createAsyncThunk<TProduct, TProduct['id'], TExtra>(
   `${NameSpace.Favorites}/addFavorite`,
-  async (id, { extra: api }) => {
-    const { data } = await api
-      .put<TProduct>(`${APIRoute.Favorites}/${id}`)
-      .catch((err: AxiosError) => {
-        throw toast.error(err.message);
-      });
+  async (id, { dispatch, extra: api }) => {
+    const { data } = await api.put<TProduct>(`${APIRoute.Favorites}/${id}`);
+    dispatch(fetchFavorites());
     return data;
   }
 );
@@ -68,14 +66,14 @@ export const deleteFavorite = createAsyncThunk<
   TProduct,
   TProduct['id'],
   TExtra
->(`${NameSpace.Favorites}/deleteFavorite`, async (id, { extra: api }) => {
-  const { data } = await api
-    .delete<TProduct>(`${APIRoute.Favorites}/${id}`)
-    .catch((err: AxiosError) => {
-      throw toast.error(err.message);
-    });
-  return data;
-});
+>(
+  `${NameSpace.Favorites}/deleteFavorite`,
+  async (id, { dispatch, extra: api }) => {
+    const { data } = await api.delete<TProduct>(`${APIRoute.Favorites}/${id}`);
+    dispatch(fetchFavorites());
+    return data;
+  }
+);
 
 export const fetchReviews = createAsyncThunk<TReview[], TReview['id'], TExtra>(
   `${NameSpace.Reviews}/fetchReviews`,
@@ -117,11 +115,20 @@ export const fetchLastReview = createAsyncThunk<TReview, undefined, TExtra>(
   }
 );
 
-export const signUp = createAsyncThunk<TUser, { signInData: TUser }, TExtra>(
+export const checkAuth = createAsyncThunk<TUser, undefined, TExtra>(
+  `${NameSpace.User}/checkAuth`,
+  async (_arg, { extra: api }) => {
+    const { data } = await api.get<TUser>(APIRoute.Login);
+
+    return data;
+  }
+);
+
+export const signUp = createAsyncThunk<TUser, TSignUpData, TExtra>(
   `${NameSpace.User}/signUp`,
-  async ({ signInData }, { extra: api }) => {
+  async ({ name, email, password }, { extra: api }) => {
     const { data } = await api
-      .post<TUser>(`${APIRoute.SignUp}`, signInData)
+      .post<TUser>(`${APIRoute.SignUp}`, { name, email, password })
       .catch((err: AxiosError) => {
         throw toast.error(err.message);
       });
@@ -130,18 +137,6 @@ export const signUp = createAsyncThunk<TUser, { signInData: TUser }, TExtra>(
 );
 
 // TODO добавить загрузку аватара и получение списка категорий и типов товаров
-
-export const checkAuth = createAsyncThunk<TUser, undefined, TExtra>(
-  `${NameSpace.User}/checkAuth`,
-  async (_arg, { extra: api }) => {
-    const { data } = await api
-      .get<TUser>(APIRoute.Login)
-      .catch((err: AxiosError) => {
-        throw toast.error(err.message);
-      });
-    return data;
-  }
-);
 
 export const login = createAsyncThunk<TUser, TAuthData, TExtra>(
   `${NameSpace.User}/login`,

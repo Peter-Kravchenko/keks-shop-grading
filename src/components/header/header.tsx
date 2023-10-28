@@ -1,12 +1,17 @@
 import cn from 'classnames';
 import { useAppSelector } from '../../hooks';
-import { getAuthStatus } from '../../store/user-data/user-data.selectors';
+import {
+  getAuthStatus,
+  getUser,
+} from '../../store/user-data/user-data.selectors';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { Link } from 'react-router-dom';
 import HeaderButtons from '../buttons/header-buttons/header-buttons';
 
 function Header(): JSX.Element {
   const isAuth = useAppSelector(getAuthStatus) === AuthorizationStatus.Auth;
+
+  const user = useAppSelector(getUser);
 
   return (
     <header className={cn({ header: true, 'header--authorized': isAuth })}>
@@ -29,19 +34,16 @@ function Header(): JSX.Element {
               <div className="header__user-info">
                 <div className="header__user-avatar">
                   <picture>
-                    <source
-                      type="image/webp"
-                      src="img/content/user-avatar.webp"
-                    />
+                    <source type="image/webp" src={user?.avatarUrl} />
                     <img
-                      src="img/content/user-avatar.jpg"
+                      src={user?.avatarUrl}
                       width={62}
                       height={62}
                       alt="Аватар пользователя."
                     />
                   </picture>
                 </div>
-                <p className="header__user-mail">keks@academy.ru</p>
+                <p className="header__user-mail">{user?.email}</p>
               </div>
             </div>
           )}

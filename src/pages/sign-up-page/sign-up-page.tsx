@@ -1,3 +1,7 @@
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../const';
+import SignUpForm from '../../components/sign-up-form/sign-up-form';
+
 function SignUpPage(): JSX.Element {
   return (
     <div className="wrapper">
@@ -10,7 +14,7 @@ function SignUpPage(): JSX.Element {
                 src="img/svg/hero-keks.svg"
                 width={727}
                 height={569}
-                alt="Картика кота."
+                alt="Картинка кота."
               />
             </div>
           </div>
@@ -18,74 +22,13 @@ function SignUpPage(): JSX.Element {
             <div className="register-page__inner">
               <h1 className="register-page__title">Регистрация</h1>
               <div className="register-page__form">
-                <form action="#" method="post" autoComplete="off">
-                  <div className="register-page__fields">
-                    <div className="custom-input register-page__field">
-                      <label>
-                        <span className="custom-input__label">
-                          Введите ваше имя
-                        </span>
-                        <input
-                          type="text"
-                          name="user-name-1"
-                          placeholder="Имя"
-                          required
-                        />
-                      </label>
-                    </div>
-                    <div className="custom-input register-page__field">
-                      <label>
-                        <span className="custom-input__label">
-                          Введите вашу почту
-                        </span>
-                        <input
-                          type="email"
-                          name="user-mail-1"
-                          placeholder="Почта"
-                          required
-                        />
-                      </label>
-                    </div>
-                    <div className="custom-input register-page__field">
-                      <label>
-                        <span className="custom-input__label">
-                          Введите ваш пароль
-                        </span>
-                        <input
-                          type="password"
-                          name="user-password-1"
-                          placeholder="Пароль"
-                          required
-                        />
-                      </label>
-                    </div>
-                    <div className="custom-input register-page__field">
-                      <label>
-                        <span className="custom-input__label">
-                          Введите ваше имя
-                        </span>
-                        <input
-                          type="file"
-                          name="user-name-1"
-                          data-text="Аватар"
-                          accept="image/jpeg"
-                        />
-                      </label>
-                    </div>
-                  </div>
-                  <button
-                    className="btn register-page__btn btn--large"
-                    type="submit"
-                  >
-                    Зарегистрироваться
-                  </button>
-                </form>
+                <SignUpForm />
               </div>
               <p className="register-page__text-wrap">
                 Уже зарегистрированы?{' '}
-                <a className="register-page__link" href="login-page.html">
+                <Link to={AppRoute.Login} className="register-page__link">
                   Войдите
-                </a>{' '}
+                </Link>{' '}
                 в свой аккаунт.
               </p>
             </div>

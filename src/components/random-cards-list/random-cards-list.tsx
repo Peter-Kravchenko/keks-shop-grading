@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { TProducts } from '../../types/products';
 import { AppRoute, ProductBlock } from '../../const';
-import Card from '../card/card';
+import ProductCard from '../product-card/product-card';
 
 type TRandomCardsListProps = {
   randomProducts: TProducts[];
@@ -16,7 +16,7 @@ function RandomCardsLict({
         <h2 className="random-main__title">кексы</h2>
         <ul className="random-main__list">
           {randomProducts.map((randomProduct) => (
-            <Card
+            <ProductCard
               product={randomProduct}
               key={randomProduct.id}
               productBlock={ProductBlock.Main}
