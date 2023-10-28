@@ -25,14 +25,14 @@ export enum ProductType {
 }
 
 export enum AppRoute {
-  Catalog = '/Catalog',
-  Error = '/ErrorPage',
-  Favorites = '/Favourites',
+  Catalog = '/catalog',
+  Error = '/errorPage',
+  Favorites = '/favourites',
   Login = '/login',
-  Main = '/Index',
+  Main = '/',
   NotFound = '/404',
-  Product = '/ProductCard',
-  SignUp = '/SignUp',
+  Product = '/catalog/product',
+  SignUp = '/signUp',
 }
 
 export enum APIRoute {

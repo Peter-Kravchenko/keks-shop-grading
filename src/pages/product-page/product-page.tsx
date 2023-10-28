@@ -69,7 +69,7 @@ function ProductPage(): JSX.Element {
       <Footer />
     </div>
   ) : (
-    <div>Sorry, product not found</div>
+    <h2>Кексы не найдены</h2>
   );
 }
 

@@ -53,7 +53,7 @@ export const fetchFavorites = createAsyncThunk<TProduct[], undefined, TExtra>(
   }
 );
 
-export const addFavorite = createAsyncThunk<TProduct, TProduct['id'], TExtra>(
+export const addToFavorite = createAsyncThunk<TProduct, TProduct['id'], TExtra>(
   `${NameSpace.Favorites}/addFavorite`,
   async (id, { dispatch, extra: api }) => {
     const { data } = await api.put<TProduct>(`${APIRoute.Favorites}/${id}`);
