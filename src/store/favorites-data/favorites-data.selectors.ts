@@ -11,3 +11,8 @@ export const getFetchingStatus = createSelector(
   (state: TAppState) => state[NameSpace.Favorites],
   (state: TFavoritesData) => state.fetchingStatus
 );
+
+export const getSendingStatus = createSelector(
+  (state: TAppState) => state[NameSpace.Favorites],
+  (state: TFavoritesData) => state.sendingStatus
+);

@@ -37,7 +37,7 @@ function ProductCard({
           </div>
           {product.isNew && <span className="card-item__label">Новинка</span>}
         </Link>
-        <FavoritesButton id={product.id} isFavorite={product.isFavorite} />
+        <FavoritesButton id={product.id} />
         {productBlock === ProductBlock.Catalog && (
           <span className="card-item__price">{product.price} p</span>
         )}

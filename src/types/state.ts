@@ -24,6 +24,7 @@ export type TProductData = {
 export type TFavoritesData = {
   favorites: TProduct[];
   fetchingStatus: RequestStatus;
+  sendingStatus: RequestStatus;
 };
 
 export type TReviewData = {

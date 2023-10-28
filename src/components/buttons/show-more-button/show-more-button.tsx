@@ -11,7 +11,9 @@ function ShowMoreButton({
 }: TShowMoreButtonProps): JSX.Element {
   const dispatch = useAppDispatch();
   const handleShowMoreClick = () => {
-    dispatch(showMoreProductsAction());
+    if (!reviewBlock) {
+      dispatch(showMoreProductsAction());
+    }
   };
 
   return (

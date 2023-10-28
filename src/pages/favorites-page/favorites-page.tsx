@@ -1,14 +1,31 @@
-import { Link } from 'react-router-dom';
 import BackButton from '../../components/buttons/back-button/back-button';
-import CatalogCardsList from '../../components/catalog-cards-list/catalog-cards-list';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
-import { AppRoute } from '../../const';
-import { useAppSelector } from '../../hooks';
-import { getFavorites } from '../../store/favorites-data/favorites-data.selectors';
+import { AppRoute, RequestStatus } from '../../const';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import {
+  getFavorites,
+  getFetchingStatus,
+} from '../../store/favorites-data/favorites-data.selectors';
+import FavoritesEmpty from '../../components/favorites-empty/favorites-empty';
+import FavoritesSection from '../../components/favorites-section/favorites-section';
+import Loader from '../../components/loader/loader';
+import { useEffect } from 'react';
+import { fetchFavorites } from '../../store/api-actions';
 
 function FavoritesPage(): JSX.Element {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchFavorites());
+  }, [dispatch]);
+
   const favorites = useAppSelector(getFavorites);
+  const favoritesFetchingStatus = useAppSelector(getFetchingStatus);
+
+  if (favoritesFetchingStatus === RequestStatus.Pending) {
+    return <Loader />;
+  }
 
   return (
     <div className="wrapper">
@@ -21,42 +38,11 @@ function FavoritesPage(): JSX.Element {
               <BackButton rote={AppRoute.Main} />
             </div>
           </div>
-          <section className="number-of-favourites favorites-page__qty">
-            <div className="container">
-              <h2 className="visually-hidden">
-                Количество товаров в избранном.
-              </h2>
-              <p className="number-of-favourites__cakes">2 кекса</p>
-              <div className="number-of-favourites__wrapper">
-                <div className="number-of-favourites__wrap-price">
-                  <p className="number-of-favourites__text">Всего</p>
-                  <p className="number-of-favourites__price">
-                    13&nbsp;400&nbsp;р
-                  </p>
-                </div>
-              </div>
-              <div className="number-of-favourites__button">
-                <Link to={AppRoute.Catalog} className="btn">
-                  В каталог
-                </Link>
-              </div>
-            </div>
-          </section>
-          <section className="favourites">
-            <div className="container">
-              <h2 className="visually-hidden">Избранные товары</h2>
-              <div className="favourites__button">
-                <button className="btn btn--second" type="button">
-                  Очистить
-                </button>
-              </div>
-            </div>
-            {favorites.length > 0 ? (
-              <CatalogCardsList products={favorites} />
-            ) : (
-              <h1>пусто</h1>
-            )}
-          </section>
+          {favorites.length > 0 ? (
+            <FavoritesSection favorites={favorites} />
+          ) : (
+            <FavoritesEmpty />
+          )}
         </div>
       </main>
       <Footer />

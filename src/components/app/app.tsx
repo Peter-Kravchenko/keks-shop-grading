@@ -28,7 +28,6 @@ function App(): JSX.Element {
   useEffect(() => {
     dispatch(checkAuth());
     dispatch(fetchProducts());
-    dispatch(fetchFavorites());
     dispatch(fetchLastReview());
   }, [dispatch]);
 

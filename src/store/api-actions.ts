@@ -55,9 +55,9 @@ export const fetchFavorites = createAsyncThunk<TProduct[], undefined, TExtra>(
 
 export const addToFavorite = createAsyncThunk<TProduct, TProduct['id'], TExtra>(
   `${NameSpace.Favorites}/addFavorite`,
-  async (id, { dispatch, extra: api }) => {
+  async (id, { extra: api }) => {
     const { data } = await api.put<TProduct>(`${APIRoute.Favorites}/${id}`);
-    dispatch(fetchFavorites());
+
     return data;
   }
 );
@@ -66,14 +66,11 @@ export const deleteFavorite = createAsyncThunk<
   TProduct,
   TProduct['id'],
   TExtra
->(
-  `${NameSpace.Favorites}/deleteFavorite`,
-  async (id, { dispatch, extra: api }) => {
-    const { data } = await api.delete<TProduct>(`${APIRoute.Favorites}/${id}`);
-    dispatch(fetchFavorites());
-    return data;
-  }
-);
+>(`${NameSpace.Favorites}/deleteFavorite`, async (id, { extra: api }) => {
+  const { data } = await api.delete<TProduct>(`${APIRoute.Favorites}/${id}`);
+
+  return data;
+});
 
 export const fetchReviews = createAsyncThunk<TReview[], TReview['id'], TExtra>(
   `${NameSpace.Reviews}/fetchReviews`,

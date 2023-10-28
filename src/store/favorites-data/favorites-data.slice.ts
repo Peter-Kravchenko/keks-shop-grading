@@ -6,6 +6,7 @@ import { addToFavorite, deleteFavorite, fetchFavorites } from '../api-actions';
 const initialState: TFavoritesData = {
   favorites: [],
   fetchingStatus: RequestStatus.Idle,
+  sendingStatus: RequestStatus.Idle,
 };
 
 export const favoritesData = createSlice({
@@ -25,26 +26,26 @@ export const favoritesData = createSlice({
         state.fetchingStatus = RequestStatus.Rejected;
       })
       .addCase(addToFavorite.pending, (state) => {
-        state.fetchingStatus = RequestStatus.Pending;
+        state.sendingStatus = RequestStatus.Pending;
       })
       .addCase(addToFavorite.fulfilled, (state, action) => {
         state.favorites.push(action.payload);
-        state.fetchingStatus = RequestStatus.Success;
+        state.sendingStatus = RequestStatus.Success;
       })
       .addCase(addToFavorite.rejected, (state) => {
-        state.fetchingStatus = RequestStatus.Rejected;
+        state.sendingStatus = RequestStatus.Rejected;
       })
       .addCase(deleteFavorite.pending, (state) => {
-        state.fetchingStatus = RequestStatus.Pending;
+        state.sendingStatus = RequestStatus.Pending;
       })
       .addCase(deleteFavorite.fulfilled, (state, action) => {
         state.favorites = state.favorites.filter(
           (product) => product.id !== action.payload.id
         );
-        state.fetchingStatus = RequestStatus.Success;
+        state.sendingStatus = RequestStatus.Success;
       })
       .addCase(deleteFavorite.rejected, (state) => {
-        state.fetchingStatus = RequestStatus.Rejected;
+        state.sendingStatus = RequestStatus.Rejected;
       });
   },
 });

@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../../const';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
-import { fetchFavorites, logout } from '../../../store/api-actions';
-import { useEffect } from 'react';
+import { logout } from '../../../store/api-actions';
 import { getFavorites } from '../../../store/favorites-data/favorites-data.selectors';
 
 type THeaderButtonsProps = {
@@ -11,12 +10,6 @@ type THeaderButtonsProps = {
 
 function HeaderButtons({ isAuth }: THeaderButtonsProps): JSX.Element {
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    if (isAuth) {
-      dispatch(fetchFavorites());
-    }
-  }, [dispatch, isAuth]);
 
   const favouritesCount = useAppSelector(getFavorites).length;
 

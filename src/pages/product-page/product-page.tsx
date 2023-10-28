@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom';
-import Footer from '../../components/footer/footer';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
 import { fetchProduct, fetchReviews } from '../../store/api-actions';
@@ -9,14 +8,14 @@ import {
 } from '../../store/product-data/product-data.selectors';
 import { AppRoute, RequestStatus } from '../../const';
 import { getReviews } from '../../store/reviews-data/reviews-data.selectors';
-import ShowMoreButton from '../../components/buttons/show-more-button/show-more-button';
-import Review from '../../components/review/review';
+import Footer from '../../components/footer/footer';
 import ReviewForm from '../../components/review-form/review-form';
 import ReviewsFilter from '../../components/reviews-filter/reviews-filter';
 import ProductDetails from '../../components/product-details/product-details';
 import BackButton from '../../components/buttons/back-button/back-button';
 import Header from '../../components/header/header';
 import Loader from '../../components/loader/loader';
+import ReviewsList from '../../components/reviews-list/reviews-list';
 
 function ProductPage(): JSX.Element {
   const { id } = useParams();
@@ -52,19 +51,7 @@ function ProductPage(): JSX.Element {
         <ProductDetails product={product} />
         <ReviewForm />
         <ReviewsFilter />
-        <section className="comments">
-          <h2 className="visually-hidden">Список комментариев</h2>
-          <div className="container">
-            <div className="comments__wrapper">
-              {reviews.map((review) => (
-                <Review key={review.id} review={review} />
-              ))}
-            </div>
-            <div className="comments__show-more">
-              <ShowMoreButton reviewBlock />
-            </div>
-          </div>
-        </section>
+        <ReviewsList reviews={reviews} />
       </main>
       <Footer />
     </div>
