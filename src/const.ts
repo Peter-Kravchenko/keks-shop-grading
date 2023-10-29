@@ -1,3 +1,9 @@
+export const TITLE_LAYER =
+  'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
+
+export const COPYRIGHT =
+  '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
+
 export enum ReviewLength {
   Min = 5,
   Max = 500,
@@ -29,10 +35,10 @@ export enum AppRoute {
   Error = '/errorPage',
   Favorites = '/favourites',
   Login = '/login',
-  Main = '/',
+  Main = '/index',
   NotFound = '/404',
-  Product = '/catalog/product',
-  SignUp = '/signUp',
+  Product = '/productpage',
+  SignUp = '/signup',
 }
 
 export enum APIRoute {
@@ -75,6 +81,12 @@ export enum ProductBlock {
   Main = 'random-main__item',
 }
 
+export enum defaultCoordinates {
+  latitude = 59.966,
+  longitude = 30.3,
+  zoom = 14,
+}
+
 export const ProductImgSize = {
   Small: { width: 241, height: 245 },
   Large: { width: 326, heigh: 332 },
@@ -87,3 +99,30 @@ export const ratingMap = {
   '2': 'badly',
   '1': 'terribly',
 };
+
+export const locations = [
+  {
+    id: 'first-confectionery',
+    name: 'Кондитерская 1',
+    address: 'ул. Профессора Попова',
+    latitude: 59.970969,
+    longitude: 30.316252,
+    icon: '/img/content/map-marker2.svg',
+  },
+  {
+    id: 'second-confectionery',
+    name: 'Кондитерская 2',
+    address: 'Вязовая ул.',
+    latitude: 59.967947,
+    longitude: 30.274708,
+    icon: '/img/content/map-marker2.svg',
+  },
+  {
+    id: 'production',
+    name: 'Производство',
+    address: 'ул. Ленина, 10',
+    latitude: 59.96038,
+    longitude: 30.308725,
+    icon: '/img/content/map-marker1.svg',
+  },
+];

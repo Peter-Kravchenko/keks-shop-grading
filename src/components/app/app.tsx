@@ -29,6 +29,7 @@ function App(): JSX.Element {
     dispatch(checkAuth());
     dispatch(fetchProducts());
     dispatch(fetchLastReview());
+    dispatch(fetchFavorites());
   }, [dispatch]);
 
   const authStatus = useAppSelector(getAuthStatus);
