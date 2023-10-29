@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import MapAdress from '../map-adresses/map-adresses';
+import MapAdress from '../map-adress/map-adress';
 import { locations } from '../../const';
 import { TLocation } from '../../types/map';
 import MapDetails from '../map-details/map-details';

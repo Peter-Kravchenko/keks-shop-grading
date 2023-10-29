@@ -6,7 +6,7 @@ import {
   getFetchingStatus,
   getProduct,
 } from '../../store/product-data/product-data.selectors';
-import { AppRoute, RequestStatus } from '../../const';
+import { AppRoute, AuthorizationStatus, RequestStatus } from '../../const';
 import { getReviews } from '../../store/reviews-data/reviews-data.selectors';
 import Footer from '../../components/footer/footer';
 import ReviewForm from '../../components/review-form/review-form';
@@ -17,9 +17,14 @@ import Header from '../../components/header/header';
 import Loader from '../../components/loader/loader';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 
-function ProductPage(): JSX.Element {
+type ProductPageProps = {
+  authStatus: AuthorizationStatus;
+};
+
+function ProductPage({ authStatus }: ProductPageProps): JSX.Element {
   const { id } = useParams();
   const dispatch = useAppDispatch();
+  const isAuth = authStatus === AuthorizationStatus.Auth;
 
   useEffect(() => {
     if (id) {
@@ -49,14 +54,14 @@ function ProductPage(): JSX.Element {
         <h1 className="visually-hidden">Карточка: пользователь авторизован</h1>
         <BackButton rote={AppRoute.Catalog} />
         <ProductDetails product={product} />
-        <ReviewForm />
+        {isAuth && <ReviewForm />}
         <ReviewsFilter />
         <ReviewsList reviews={reviews} />
       </main>
       <Footer />
     </div>
   ) : (
-    <h2>Кексы не найдены</h2>
+    <h2>Кексы не найдены на сервере, попробуйте перезагрузить страницу</h2>
   );
 }
 

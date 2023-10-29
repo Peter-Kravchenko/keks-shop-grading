@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom';
 import Header from '../../components/header/header';
+import { AppRoute } from '../../const';
 
 function NotFoundPage(): JSX.Element {
   return (
@@ -18,9 +20,9 @@ function NotFoundPage(): JSX.Element {
               вы&nbsp;указали неправильный адрес.
             </p>
             <div className="error-page__button">
-              <a className="btn btn--large" href="index.html">
+              <Link to={AppRoute.Main} className="btn btn--large">
                 Вернуться&nbsp;на&nbsp;главную
-              </a>
+              </Link>
             </div>
           </div>
         </section>

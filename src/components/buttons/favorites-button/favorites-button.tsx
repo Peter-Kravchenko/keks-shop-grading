@@ -26,8 +26,9 @@ function FavoritesButton({ id }: TFavoritesButtonProps): JSX.Element {
       } else {
         dispatch(addToFavorite(id));
       }
-    } else {
-      navigate(AppRoute.Login); //поправить
+    }
+    if (!isAuth) {
+      navigate(AppRoute.Login); //TODO поправить
     }
   };
 

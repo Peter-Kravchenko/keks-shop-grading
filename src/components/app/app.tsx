@@ -44,7 +44,10 @@ function App(): JSX.Element {
         <Routes>
           <Route path={AppRoute.Main} element={<MainPage />} />
           <Route path={AppRoute.Catalog} element={<CatalogPage />} />
-          <Route path={`${AppRoute.Product}/:id`} element={<ProductPage />} />
+          <Route
+            path={`${AppRoute.Product}/:id`}
+            element={<ProductPage authStatus={authStatus} />}
+          />
           <Route
             path={AppRoute.Favorites}
             element={
