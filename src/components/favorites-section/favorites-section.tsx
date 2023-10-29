@@ -4,6 +4,7 @@ import { AppRoute } from '../../const';
 import CatalogCardsList from '../catalog-cards-list/catalog-cards-list';
 import { useAppDispatch } from '../../hooks';
 import { deleteFavorite } from '../../store/api-actions';
+import { addPluralEnding } from '../../utils/utils';
 
 type TFavoritesSectionProps = {
   favorites: TProduct[];
@@ -18,7 +19,7 @@ function FavoritesSection({ favorites }: TFavoritesSectionProps): JSX.Element {
         <div className="container">
           <h2 className="visually-hidden">Количество товаров в избранном.</h2>
           <p className="number-of-favourites__cakes">
-            {favorites.length} кекса
+            {favorites.length} кекс{addPluralEnding(favorites.length)}
           </p>
           <div className="number-of-favourites__wrapper">
             <div className="number-of-favourites__wrap-price">
