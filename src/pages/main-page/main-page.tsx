@@ -12,6 +12,7 @@ import Map from '../../components/map/map';
 import Loader from '../../components/loader/loader';
 import { RequestStatus } from '../../const';
 import LastReview from '../../components/last-review/last-review';
+import { getThreeRandomProducts } from '../../utils/utils';
 
 function MainPage(): JSX.Element {
   const products = useAppSelector(getProducts);
@@ -26,7 +27,7 @@ function MainPage(): JSX.Element {
       <Header />
       <main>
         <Hero />
-        <RandomCardsLict randomProducts={products.slice(0, 3)} />
+        <RandomCardsLict randomProducts={getThreeRandomProducts(products)} />
         <LastReview />
         <Map />
       </main>
