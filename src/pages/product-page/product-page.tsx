@@ -7,7 +7,10 @@ import {
   getProduct,
 } from '../../store/product-data/product-data.selectors';
 import { AuthorizationStatus, RequestStatus } from '../../const';
-import { getReviews } from '../../store/reviews-data/reviews-data.selectors';
+import {
+  getReviews,
+  getReviewsFetchingStatus,
+} from '../../store/reviews-data/reviews-data.selectors';
 import Footer from '../../components/footer/footer';
 import ReviewForm from '../../components/review-form/review-form';
 import ReviewsFilterSort from '../../components/reviews-filter-sort/reviews-filter-sort';
@@ -42,8 +45,12 @@ function ProductPage({ authStatus }: ProductPageProps): JSX.Element {
   }, [dispatch, id, product]);
 
   const reviews = useAppSelector(getReviews);
+  const reviewsFetchingStatus = useAppSelector(getReviewsFetchingStatus);
 
-  if (productFetchingStatus === RequestStatus.Pending) {
+  if (
+    productFetchingStatus === RequestStatus.Pending ||
+    reviewsFetchingStatus === RequestStatus.Pending
+  ) {
     return <Loader />;
   }
 

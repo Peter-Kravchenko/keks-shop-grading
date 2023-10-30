@@ -2,7 +2,7 @@ import { AxiosError, AxiosInstance } from 'axios';
 import { TAppDispatch, TAppState } from '../types/state';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { TProducts } from '../types/products';
-import { APIRoute, NameSpace } from '../const';
+import { APIRoute, AppRoute, NameSpace } from '../const';
 import { toast } from 'react-toastify';
 import { TProduct } from '../types/product';
 import { TPostReview, TReview } from '../types/review';
@@ -10,6 +10,8 @@ import { TAuthData } from '../types/auth-data';
 import { TUser } from '../types/user';
 import { dropToken, saveToken } from '../services/token';
 import { TSignUpData } from '../types/sign-in-data';
+import { redirectToRoute } from './actions';
+import { TCategories } from '../types/categories';
 
 type TExtra = {
   dispatch: TAppDispatch;
@@ -37,6 +39,14 @@ export const fetchProduct = createAsyncThunk<TProduct, TProduct['id'], TExtra>(
       .catch((err: AxiosError) => {
         throw toast.error(err.message);
       });
+    return data;
+  }
+);
+
+export const fetchCategories = createAsyncThunk<TCategories, undefined, TExtra>(
+  `${NameSpace.App}/fetchCategories`,
+  async (_arg, { extra: api }) => {
+    const { data } = await api.get<TCategories>(APIRoute.Categories);
     return data;
   }
 );
@@ -123,21 +133,20 @@ export const checkAuth = createAsyncThunk<TUser, undefined, TExtra>(
 
 export const signUp = createAsyncThunk<TUser, TSignUpData, TExtra>(
   `${NameSpace.User}/signUp`,
-  async ({ name, email, password }, { extra: api }) => {
+  async ({ name, email, password }, { dispatch, extra: api }) => {
     const { data } = await api
       .post<TUser>(`${APIRoute.SignUp}`, { name, email, password })
       .catch((err: AxiosError) => {
         throw toast.error(err.message);
       });
+    dispatch(redirectToRoute(AppRoute.Main));
     return data;
   }
 );
 
-// TODO добавить загрузку аватара и получение списка категорий и типов товаров
-
 export const login = createAsyncThunk<TUser, TAuthData, TExtra>(
   `${NameSpace.User}/login`,
-  async ({ email, password }, { extra: api }) => {
+  async ({ email, password }, { dispatch, extra: api }) => {
     const { data } = await api
       .post<TUser>(APIRoute.Login, {
         email,
@@ -147,6 +156,7 @@ export const login = createAsyncThunk<TUser, TAuthData, TExtra>(
         throw toast.error(err.message);
       });
     saveToken(data.token);
+    dispatch(redirectToRoute(AppRoute.Main));
     return data;
   }
 );

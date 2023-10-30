@@ -5,17 +5,12 @@ import { TReview } from '../../types/review';
 import ShowMoreButton from '../buttons/show-more-button/show-more-button';
 import Review from '../review/review';
 import { resetReviewsCountAction } from '../../store/app-process/app-process.slice';
-import { getReviewsFetchingStatus } from '../../store/reviews-data/reviews-data.selectors';
-import { RequestStatus } from '../../const';
-import Loader from '../loader/loader';
 
 type TReviewsListProps = {
   reviews: TReview[];
 };
 function ReviewsList({ reviews }: TReviewsListProps): JSX.Element {
   const dispatch = useAppDispatch();
-
-  const reviewsFetchingStatus = useAppSelector(getReviewsFetchingStatus);
 
   const maxReviewsCountOnPage = useAppSelector(getReviewsCountOnPage);
   const reviewsOnPage = reviews.slice(
@@ -27,10 +22,6 @@ function ReviewsList({ reviews }: TReviewsListProps): JSX.Element {
   useEffect(() => {
     dispatch(resetReviewsCountAction());
   }, [dispatch]);
-
-  if (reviewsFetchingStatus === RequestStatus.Pending) {
-    return <Loader />;
-  }
 
   return (
     <div>

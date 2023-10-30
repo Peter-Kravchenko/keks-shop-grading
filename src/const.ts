@@ -29,6 +29,27 @@ export enum ProductType {
   BrandMuffin = 'brand-muffin',
 }
 
+export const ProductCategoryRUS: { [key in ProductCategory]: string } = {
+  [ProductCategory.Bisque]: 'Бисквит',
+  [ProductCategory.Cheesecake]: 'Чизкейк',
+  [ProductCategory.Shortbread]: 'Песочное',
+  [ProductCategory.Dessert]: 'Десерт',
+};
+
+export const ProductTypeRUS: { [key in ProductType]: string } = {
+  [ProductType.Chocolate]: 'Шоколадный',
+  [ProductType.Vanilla]: 'Ваниль',
+  [ProductType.Vegetarian]: 'Вегетарианский',
+  [ProductType.HoneyCake]: 'Медовый',
+  [ProductType.Lemon]: 'Лимонный',
+  [ProductType.NewYork]: 'Нью-Йорк',
+  [ProductType.Tart]: 'Тарт',
+  [ProductType.FunnelCake]: 'Торт',
+  [ProductType.BasketCake]: 'Корзинка',
+  [ProductType.ChocolateMuffin]: 'Шоколадный кекс',
+  [ProductType.BrandMuffin]: 'Фирменный кекс',
+};
+
 export enum AppRoute {
   Catalog = '/catalog',
   Error = '/error-page',

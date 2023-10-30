@@ -1,5 +1,11 @@
-import { AuthorizationStatus, RequestStatus } from '../const';
+import {
+  AuthorizationStatus,
+  ProductCategory,
+  ProductType,
+  RequestStatus,
+} from '../const';
 import { store } from '../store';
+import { TCategories } from './categories';
 import { TProduct } from './product';
 import { TProducts } from './products';
 import { TReview } from './review';
@@ -11,6 +17,9 @@ export type TAppDispatch = typeof store.dispatch;
 export type TAppProcess = {
   productsCountOnPage: number;
   reviewsCountOnPage: number;
+  categories: TCategories;
+  activeCategory: ProductCategory | null;
+  activeTypes: ProductType[];
 };
 
 export type TProductsData = {
