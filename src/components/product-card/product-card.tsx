@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { AppRoute, ProductBlock, ProductImgSize } from '../../const';
+import { AppRoute, ProductBlock } from '../../const';
 import { TProducts } from '../../types/products';
 import { Link } from 'react-router-dom';
 import FavoritesButton from '../buttons/favorites-button/favorites-button';
@@ -10,14 +10,13 @@ type ProductCardProps = {
 };
 
 function ProductCard({ product, productBlock }: ProductCardProps): JSX.Element {
-  const imgSize =
-    productBlock === ProductBlock.Catalog
-      ? ProductImgSize.Large
-      : ProductImgSize.Small;
-
   return (
     <li className={`${productBlock}`}>
-      <div className="card-item card-item--big">
+      <div
+        className={cn('card-item', {
+          'card-item--big': productBlock === ProductBlock.Catalog,
+        })}
+      >
         <Link
           to={`${AppRoute.Product}/${product.id}`}
           className="card-item__img-link"
@@ -28,7 +27,8 @@ function ProductCard({ product, productBlock }: ProductCardProps): JSX.Element {
               <img
                 src={product.previewImageWebp}
                 alt={product.title}
-                {...imgSize}
+                width="326"
+                height="332"
               />
             </picture>
           </div>

@@ -6,6 +6,8 @@ export const COPYRIGHT =
 
 export const MAX_COMMENT_LENGTH = 500;
 
+export const DESCRIPTION_LENGTH = 140;
+
 export enum ProductCategory {
   Bisque = 'bisque',
   Cheesecake = 'cheesecake',
@@ -88,11 +90,6 @@ export enum defaultCoordinates {
   longitude = 30.3,
   zoom = 14,
 }
-
-export const ProductImgSize = {
-  Small: { width: 241, height: 245 },
-  Large: { width: 326, heigh: 332 },
-} as const;
 
 export const ratingMap = {
   '5': 'perfect',

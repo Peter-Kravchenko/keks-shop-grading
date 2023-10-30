@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { RatingBlock } from '../../const';
 import { TReview } from '../../types/review';
 import RatingStars from '../rating-stars/rating-stars';
@@ -11,7 +12,7 @@ function Review({ review }: TReviewProps): JSX.Element {
     <div className="review">
       <div className="review__inner-wrapper review__inner-wrapper--border">
         <time className="review__date" dateTime={review.isoDate}>
-          {review.isoDate}
+          {dayjs(review.isoDate).format('DD.MM')}
         </time>
         <span className="review__author">
           Уважаемый(-ая) {review.user.name}

@@ -6,11 +6,11 @@ import {
   getFetchingStatus,
   getProduct,
 } from '../../store/product-data/product-data.selectors';
-import { AppRoute, AuthorizationStatus, RequestStatus } from '../../const';
+import { AuthorizationStatus, RequestStatus } from '../../const';
 import { getReviews } from '../../store/reviews-data/reviews-data.selectors';
 import Footer from '../../components/footer/footer';
 import ReviewForm from '../../components/review-form/review-form';
-import ReviewsFilter from '../../components/reviews-filter/reviews-filter';
+import ReviewsFilterSort from '../../components/reviews-filter-sort/reviews-filter-sort';
 import ProductDetails from '../../components/product-details/product-details';
 import BackButton from '../../components/buttons/back-button/back-button';
 import Header from '../../components/header/header';
@@ -55,7 +55,7 @@ function ProductPage({ authStatus }: ProductPageProps): JSX.Element {
         <BackButton />
         <ProductDetails product={product} />
         {isAuth && <ReviewForm id={product.id} />}
-        <ReviewsFilter />
+        <ReviewsFilterSort />
         <ReviewsList reviews={reviews} />
       </main>
       <Footer />

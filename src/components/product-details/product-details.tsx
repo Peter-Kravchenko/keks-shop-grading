@@ -1,5 +1,6 @@
 import { RatingBlock } from '../../const';
 import { TProduct } from '../../types/product';
+import FavoritesButton from '../buttons/favorites-button/favorites-button';
 import ReadMoreButton from '../buttons/read-more-button/read-more-button';
 import RatingStars from '../rating-stars/rating-stars';
 
@@ -47,12 +48,7 @@ function ProductDetails({ product }: ProductDetailsProps): JSX.Element {
                 <ReadMoreButton />
               </div>
               <div className="item-details__button-wrapper">
-                <button className="item-details__like-button">
-                  <svg width={45} height={37} aria-hidden="true">
-                    <use xlinkHref="#icon-like" />
-                  </svg>
-                  <span className="visually-hidden">Понравилось</span>
-                </button>
+                <FavoritesButton id={product.id} />
                 <button className="btn btn--second" type="button">
                   Отменить отзыв
                 </button>

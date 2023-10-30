@@ -2,7 +2,6 @@ import { Fragment } from 'react';
 import { TProduct } from '../../types/product';
 import cn from 'classnames';
 import { RatingBlock, stars } from '../../const';
-import { TReview } from '../../types/review';
 
 type RatingStarsProps = {
   rating: TProduct['rating'];

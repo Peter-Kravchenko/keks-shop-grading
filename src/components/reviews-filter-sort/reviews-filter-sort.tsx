@@ -1,4 +1,4 @@
-function ReviewsFilter(): JSX.Element {
+function ReviewsFilterSort(): JSX.Element {
   return (
     <div className="filter-sort">
       <div className="container">
@@ -98,4 +98,4 @@ function ReviewsFilter(): JSX.Element {
   );
 }
 
-export default ReviewsFilter;
+export default ReviewsFilterSort;
