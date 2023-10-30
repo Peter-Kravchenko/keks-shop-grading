@@ -24,7 +24,7 @@ function ReviewForm({ id }: ReviewFormProps): JSX.Element {
 
   const isUIBlocked = reviewSendingStatus === RequestStatus.Pending;
   const formDisabled = () => {
-    if (formData.rating >= 4) {
+    if (formData.rating >= 4 || formData.rating === 0) {
       return (
         reviewSendingStatus === RequestStatus.Pending ||
         formData.positive.length >= MAX_COMMENT_LENGTH ||

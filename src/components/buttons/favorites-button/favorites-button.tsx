@@ -2,10 +2,10 @@ import cn from 'classnames';
 import { TProducts } from '../../../types/products';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { getAuthStatus } from '../../../store/user-data/user-data.selectors';
-import { useNavigate } from 'react-router-dom';
-import { AppRoute } from '../../../const';
 import { addToFavorite, deleteFavorite } from '../../../store/api-actions';
 import { getFavorites } from '../../../store/favorites-data/favorites-data.selectors';
+import { AppRoute, AuthorizationStatus } from '../../../const';
+import { useNavigate } from 'react-router-dom';
 
 type FavoritesButtonProps = {
   id: TProducts['id'];
@@ -14,24 +14,23 @@ type FavoritesButtonProps = {
 function FavoritesButton({ id }: FavoritesButtonProps): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const isAuth = useAppSelector(getAuthStatus);
+  const authStatus = useAppSelector(getAuthStatus);
   const isFavorite = useAppSelector(getFavorites).some(
     (item) => item.id === id
   );
 
   const handleFavoriteClick = () => {
-    if (isAuth) {
+    if (authStatus === AuthorizationStatus.Auth) {
       if (isFavorite) {
         dispatch(deleteFavorite(id));
       } else {
         dispatch(addToFavorite(id));
       }
     }
-    if (!isAuth) {
-      navigate(AppRoute.Login); //TODO поправить
+    if (authStatus === AuthorizationStatus.NoAuth) {
+      navigate(AppRoute.Login);
     }
   };
-
   return (
     <button
       onClick={handleFavoriteClick}

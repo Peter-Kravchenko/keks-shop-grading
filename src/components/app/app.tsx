@@ -83,7 +83,7 @@ function App(): JSX.Element {
               </ProtectedRoute>
             }
           />
-          <Route path="/*" element={<NotFoundPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </HistoryRouter>
     </HelmetProvider>

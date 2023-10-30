@@ -133,13 +133,12 @@ export const checkAuth = createAsyncThunk<TUser, undefined, TExtra>(
 
 export const signUp = createAsyncThunk<TUser, TSignUpData, TExtra>(
   `${NameSpace.User}/signUp`,
-  async ({ name, email, password }, { dispatch, extra: api }) => {
+  async ({ name, email, password }, { extra: api }) => {
     const { data } = await api
       .post<TUser>(`${APIRoute.SignUp}`, { name, email, password })
       .catch((err: AxiosError) => {
         throw toast.error(err.message);
       });
-    dispatch(redirectToRoute(AppRoute.Main));
     return data;
   }
 );
