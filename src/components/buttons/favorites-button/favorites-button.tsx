@@ -7,11 +7,11 @@ import { AppRoute } from '../../../const';
 import { addToFavorite, deleteFavorite } from '../../../store/api-actions';
 import { getFavorites } from '../../../store/favorites-data/favorites-data.selectors';
 
-type TFavoritesButtonProps = {
+type FavoritesButtonProps = {
   id: TProducts['id'];
 };
 
-function FavoritesButton({ id }: TFavoritesButtonProps): JSX.Element {
+function FavoritesButton({ id }: FavoritesButtonProps): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const isAuth = useAppSelector(getAuthStatus);

@@ -4,11 +4,11 @@ import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { logout } from '../../../store/api-actions';
 import { getFavorites } from '../../../store/favorites-data/favorites-data.selectors';
 
-type THeaderButtonsProps = {
+type HeaderButtonsProps = {
   isAuth: boolean;
 };
 
-function HeaderButtons({ isAuth }: THeaderButtonsProps): JSX.Element {
+function HeaderButtons({ isAuth }: HeaderButtonsProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   const favouritesCount = useAppSelector(getFavorites).length;

@@ -13,5 +13,6 @@ export type TProduct = {
   description: string;
   images: string[];
   weight: number;
+  rating: number;
   reviewCount: number;
 };

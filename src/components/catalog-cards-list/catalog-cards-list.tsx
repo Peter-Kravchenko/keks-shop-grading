@@ -9,11 +9,11 @@ import ProductCard from '../product-card/product-card';
 import ProductNotFound from '../product-not-found/product-not-found';
 import { resetProductsCountAction } from '../../store/app-process/app-process.slice';
 
-type TCatalogCardsListProps = {
+type CatalogCardsListProps = {
   products: TProducts[];
 };
 
-function CatalogCardsList({ products }: TCatalogCardsListProps): JSX.Element {
+function CatalogCardsList({ products }: CatalogCardsListProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   const maxProductsCountOnPage = useAppSelector(getProductsCounOnPage);

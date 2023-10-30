@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 
-type TProtectedRouteProps = {
+type ProtectedRouteProps = {
   restrictedFor: AuthorizationStatus;
   redirectTo: AppRoute;
   children: JSX.Element;
@@ -11,7 +11,7 @@ function ProtectedRoute({
   restrictedFor,
   redirectTo,
   children,
-}: TProtectedRouteProps): JSX.Element {
+}: ProtectedRouteProps): JSX.Element {
   const authorizationStatus = AuthorizationStatus.NoAuth;
 
   return restrictedFor === authorizationStatus ? (

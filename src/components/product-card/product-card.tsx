@@ -4,15 +4,12 @@ import { TProducts } from '../../types/products';
 import { Link } from 'react-router-dom';
 import FavoritesButton from '../buttons/favorites-button/favorites-button';
 
-type TProductCardProps = {
+type ProductCardProps = {
   product: TProducts;
   productBlock: ProductBlock;
 };
 
-function ProductCard({
-  product,
-  productBlock,
-}: TProductCardProps): JSX.Element {
+function ProductCard({ product, productBlock }: ProductCardProps): JSX.Element {
   const imgSize =
     productBlock === ProductBlock.Catalog
       ? ProductImgSize.Large

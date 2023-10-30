@@ -35,7 +35,7 @@ function FavoritesPage(): JSX.Element {
           <h1 className="visually-hidden">Избранное</h1>
           <div className="back-link">
             <div className="container">
-              <BackButton rote={AppRoute.Main} />
+              <BackButton />
             </div>
           </div>
           {favorites.length > 0 ? (

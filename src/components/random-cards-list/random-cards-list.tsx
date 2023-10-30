@@ -3,13 +3,13 @@ import { TProducts } from '../../types/products';
 import { AppRoute, ProductBlock } from '../../const';
 import ProductCard from '../product-card/product-card';
 
-type TRandomCardsListProps = {
+type RandomCardsListProps = {
   randomProducts: TProducts[];
 };
 
 function RandomCardsLict({
   randomProducts,
-}: TRandomCardsListProps): JSX.Element {
+}: RandomCardsListProps): JSX.Element {
   return (
     <section className="random-main">
       <div className="container">

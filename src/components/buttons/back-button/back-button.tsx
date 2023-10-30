@@ -1,15 +1,8 @@
-import { Link } from 'react-router-dom';
-import { AppRoute } from '../../../const';
-
-type TBackButtonProps = {
-  rote: AppRoute;
-};
-
-function BackButton({ rote }: TBackButtonProps): JSX.Element {
+function BackButton(): JSX.Element {
   return (
     <div className="back-link">
       <div className="container">
-        <Link to={rote} className="back-link__link">
+        <a className="back-link__link" onClick={() => window.history.back()}>
           Назад
           <svg
             className="back-link__icon"
@@ -19,7 +12,7 @@ function BackButton({ rote }: TBackButtonProps): JSX.Element {
           >
             <use xlinkHref="#icon-arrow-left" />
           </svg>
-        </Link>
+        </a>
       </div>
     </div>
   );

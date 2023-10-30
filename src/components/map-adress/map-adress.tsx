@@ -1,6 +1,6 @@
 import { TLocation } from '../../types/map';
 
-type TMapAdressProps = {
+type MapAdressProps = {
   location: TLocation;
   isActive: boolean;
   setActive: (location: TLocation) => void;
@@ -10,7 +10,7 @@ function MapAdress({
   location,
   isActive,
   setActive,
-}: TMapAdressProps): JSX.Element {
+}: MapAdressProps): JSX.Element {
   return (
     <li className="map__address">
       <div className="custom-toggle custom-toggle--radio custom-toggle--address">

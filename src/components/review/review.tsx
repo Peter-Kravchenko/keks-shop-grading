@@ -1,4 +1,6 @@
+import { RatingBlock } from '../../const';
 import { TReview } from '../../types/review';
+import RatingStars from '../rating-stars/rating-stars';
 
 type TReviewProps = {
   review: TReview;
@@ -14,48 +16,7 @@ function Review({ review }: TReviewProps): JSX.Element {
         <span className="review__author">
           Уважаемый(-ая) {review.user.name}
         </span>
-        <div className="star-rating">
-          <svg
-            className="star-rating__star star-rating__star--active"
-            width={30}
-            height={30}
-            aria-hidden="true"
-          >
-            <use xlinkHref="#icon-star" />
-          </svg>
-          <svg
-            className="star-rating__star star-rating__star--active"
-            width={30}
-            height={30}
-            aria-hidden="true"
-          >
-            <use xlinkHref="#icon-star" />
-          </svg>
-          <svg
-            className="star-rating__star star-rating__star--active"
-            width={30}
-            height={30}
-            aria-hidden="true"
-          >
-            <use xlinkHref="#icon-star" />
-          </svg>
-          <svg
-            className="star-rating__star star-rating__star--active"
-            width={30}
-            height={30}
-            aria-hidden="true"
-          >
-            <use xlinkHref="#icon-star" />
-          </svg>
-          <svg
-            className="star-rating__star star-rating__star--active"
-            width={30}
-            height={30}
-            aria-hidden="true"
-          >
-            <use xlinkHref="#icon-star" />
-          </svg>
-        </div>
+        <RatingStars rating={review.rating} ratingBlock={RatingBlock.review} />
         <div className="review__text-wrapper">
           {review.positive && <p className="review__text">{review.positive}</p>}
           {review.negative && <p className="review__text">{review.negative}</p>}

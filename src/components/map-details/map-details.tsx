@@ -38,11 +38,11 @@ function createIcon(config: IconConfig) {
   });
 }
 
-type TMapWrapperProps = {
+type MapWrapperProps = {
   activeLocation: TLocation;
 };
 
-function MapDetails({ activeLocation }: TMapWrapperProps): JSX.Element {
+function MapDetails({ activeLocation }: MapWrapperProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap({ mapRef });
 

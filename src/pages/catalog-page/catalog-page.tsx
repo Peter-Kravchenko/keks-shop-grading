@@ -1,6 +1,5 @@
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
-import { AppRoute } from '../../const';
 import CatalogFilters from '../../components/catalog-filters/catalog-filters';
 import CatalogCardsList from '../../components/catalog-cards-list/catalog-cards-list';
 import { getProducts } from '../../store/products-data/products-data.selectors';
@@ -15,7 +14,7 @@ function CatalogPage(): JSX.Element {
       <Header />
       <main>
         <h1 className="visually-hidden">Каталог товаров</h1>
-        <BackButton rote={AppRoute.Main} />
+        <BackButton />
         <CatalogFilters />
         <CatalogCardsList products={products} />
       </main>

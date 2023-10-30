@@ -52,9 +52,9 @@ function ProductPage({ authStatus }: ProductPageProps): JSX.Element {
       <Header />
       <main>
         <h1 className="visually-hidden">Карточка: пользователь авторизован</h1>
-        <BackButton rote={AppRoute.Catalog} />
+        <BackButton />
         <ProductDetails product={product} />
-        {isAuth && <ReviewForm />}
+        {isAuth && <ReviewForm id={product.id} />}
         <ReviewsFilter />
         <ReviewsList reviews={reviews} />
       </main>

@@ -2,13 +2,13 @@ import cn from 'classnames';
 import { useAppDispatch } from '../../../hooks';
 import { showMoreProductsAction } from '../../../store/app-process/app-process.slice';
 
-type TShowMoreButtonProps = {
+type ShowMoreButtonProps = {
   reviewBlock?: boolean;
 };
 
 function ShowMoreButton({
   reviewBlock = false,
-}: TShowMoreButtonProps): JSX.Element {
+}: ShowMoreButtonProps): JSX.Element {
   const dispatch = useAppDispatch();
   const handleShowMoreClick = () => {
     if (!reviewBlock) {

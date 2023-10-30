@@ -4,10 +4,7 @@ export const TITLE_LAYER =
 export const COPYRIGHT =
   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
 
-export enum ReviewLength {
-  Min = 5,
-  Max = 500,
-}
+export const MAX_COMMENT_LENGTH = 500;
 
 export enum ProductCategory {
   Bisque = 'bisque',
@@ -32,13 +29,13 @@ export enum ProductType {
 
 export enum AppRoute {
   Catalog = '/catalog',
-  Error = '/errorPage',
+  Error = '/error-page',
   Favorites = '/favourites',
   Login = '/login',
   Main = '/index',
   NotFound = '/404',
-  Product = '/productpage',
-  SignUp = '/signup',
+  Product = '/product-page',
+  SignUp = '/sign-up',
 }
 
 export enum APIRoute {
@@ -81,6 +78,11 @@ export enum ProductBlock {
   Main = 'random-main__item',
 }
 
+export enum RatingBlock {
+  review = 'review',
+  product = 'product',
+}
+
 export enum defaultCoordinates {
   latitude = 59.966,
   longitude = 30.3,
@@ -99,6 +101,8 @@ export const ratingMap = {
   '2': 'badly',
   '1': 'terribly',
 };
+
+export const stars: number[] = [1, 2, 3, 4, 5];
 
 export const locations = [
   {

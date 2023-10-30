@@ -6,11 +6,11 @@ import { useAppDispatch } from '../../hooks';
 import { deleteFavorite } from '../../store/api-actions';
 import { addPluralEnding } from '../../utils/utils';
 
-type TFavoritesSectionProps = {
+type FavoritesSectionProps = {
   favorites: TProduct[];
 };
 
-function FavoritesSection({ favorites }: TFavoritesSectionProps): JSX.Element {
+function FavoritesSection({ favorites }: FavoritesSectionProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   return (

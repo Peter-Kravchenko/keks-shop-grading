@@ -1,11 +1,13 @@
+import { RatingBlock } from '../../const';
 import { TProduct } from '../../types/product';
 import ReadMoreButton from '../buttons/read-more-button/read-more-button';
+import RatingStars from '../rating-stars/rating-stars';
 
-type TProductDetailsProps = {
+type ProductDetailsProps = {
   product: TProduct;
 };
 
-function ProductDetails({ product }: TProductDetailsProps): JSX.Element {
+function ProductDetails({ product }: ProductDetailsProps): JSX.Element {
   return (
     <section className="item-details item-details--form-open">
       <div className="container">
@@ -33,49 +35,11 @@ function ProductDetails({ product }: TProductDetailsProps): JSX.Element {
               )}
             </div>
             <div className="item-details__review-wrapper">
-              <div className="star-rating star-rating--big">
-                <svg
-                  className="star-rating__star star-rating__star--active"
-                  width={30}
-                  height={30}
-                  aria-hidden="true"
-                >
-                  <use xlinkHref="#icon-star" />
-                </svg>
-                <svg
-                  className="star-rating__star star-rating__star--active"
-                  width={30}
-                  height={30}
-                  aria-hidden="true"
-                >
-                  <use xlinkHref="#icon-star" />
-                </svg>
-                <svg
-                  className="star-rating__star star-rating__star--active"
-                  width={30}
-                  height={30}
-                  aria-hidden="true"
-                >
-                  <use xlinkHref="#icon-star" />
-                </svg>
-                <svg
-                  className="star-rating__star star-rating__star--active"
-                  width={30}
-                  height={30}
-                  aria-hidden="true"
-                >
-                  <use xlinkHref="#icon-star" />
-                </svg>
-                <svg
-                  className="star-rating__star star-rating__star--active"
-                  width={30}
-                  height={30}
-                  aria-hidden="true"
-                >
-                  <use xlinkHref="#icon-star" />
-                </svg>
-                <span className="star-rating__count">26</span>
-              </div>
+              <RatingStars
+                rating={product.rating}
+                ratingBlock={RatingBlock.product}
+                reviewCount={product.reviewCount}
+              />
               <div className="item-details__text-wrapper">
                 <span className="item-details__text">
                   {product.description}
