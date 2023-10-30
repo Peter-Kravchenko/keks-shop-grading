@@ -1,6 +1,6 @@
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { Map, TileLayer } from 'leaflet';
-import { COPYRIGHT, TITLE_LAYER, defaultCoordinates } from '../../const';
+import { COPYRIGHT, TITLE_LAYER, DefaultCoordinates } from '../../const';
 
 type UseMapProps = {
   mapRef: MutableRefObject<HTMLElement | null>;
@@ -14,10 +14,10 @@ function useMap({ mapRef }: UseMapProps) {
     if (mapRef.current !== null && !isRenderedRef.current) {
       const instance = new Map(mapRef.current, {
         center: {
-          lat: defaultCoordinates.latitude,
-          lng: defaultCoordinates.longitude,
+          lat: DefaultCoordinates.latitude,
+          lng: DefaultCoordinates.longitude,
         },
-        zoom: defaultCoordinates.zoom,
+        zoom: DefaultCoordinates.zoom,
       });
 
       const layer = new TileLayer(TITLE_LAYER, {

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { ProductBlock } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getProductsCounOnPage } from '../../store/app-process/app-process.secectors';
+import { getProductsCounOnPage } from '../../store/app-process/app-process.selectors';
 import { TProducts } from '../../types/products';
 import ShowMoreButton from '../buttons/show-more-button/show-more-button';
 import ToTheBeginingButton from '../buttons/to-the-begining-button/to-the-begining-button';
@@ -17,7 +17,6 @@ function CatalogCardsList({ products }: CatalogCardsListProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   const maxProductsCountOnPage = useAppSelector(getProductsCounOnPage);
-
   const productsOnPage = products.slice(
     0,
     Math.min(products.length, maxProductsCountOnPage)

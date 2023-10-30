@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { RequestStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getSendingStatus } from '../../store/user-data/user-data.selectors';
+import { getUserSendingStatus } from '../../store/user-data/user-data.selectors';
 import { login } from '../../store/api-actions';
 import { TAuthData } from '../../types/auth-data';
 
@@ -15,7 +15,7 @@ const passwordPattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.{1,}$)/;
 
 function LoginForm(): JSX.Element {
   const dispatch = useAppDispatch();
-  const loginSendingStatus = useAppSelector(getSendingStatus);
+  const loginSendingStatus = useAppSelector(getUserSendingStatus);
 
   const isUIBlocked = loginSendingStatus === RequestStatus.Pending;
 

@@ -7,7 +7,7 @@ export const getProducts = createSelector(
   (state: TProductsData) => state.products
 );
 
-export const getFetchingStatus = createSelector(
+export const getProductsFetchingStatus = createSelector(
   (state: TAppState) => state[NameSpace.Products],
   (state: TProductsData) => state.fetchingStatus
 );

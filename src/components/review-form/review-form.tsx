@@ -1,10 +1,11 @@
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { TProduct } from '../../types/product';
-import { getSendingStatus } from '../../store/reviews-data/reviews-data.selectors';
+import { getReviewSendingStatus } from '../../store/reviews-data/reviews-data.selectors';
 import { Fragment, useEffect, useState } from 'react';
 import { MAX_COMMENT_LENGTH, RequestStatus, ratingMap } from '../../const';
 import { fetchReviews, postReview } from '../../store/api-actions';
 import { toast } from 'react-toastify';
+import { resetReviewSendingStatus } from '../../store/reviews-data/reviews-data.slice';
 
 type ReviewFormProps = {
   id: TProduct['id'];
@@ -13,7 +14,7 @@ type ReviewFormProps = {
 function ReviewForm({ id }: ReviewFormProps): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const reviewSendingStatus = useAppSelector(getSendingStatus);
+  const reviewSendingStatus = useAppSelector(getReviewSendingStatus);
 
   const [formData, setFormData] = useState({
     rating: 0,
@@ -68,10 +69,12 @@ function ReviewForm({ id }: ReviewFormProps): JSX.Element {
         negative: '',
       });
       dispatch(fetchReviews(id));
+      toast.success('Спасибо за ваш отзыв');
     }
     if (reviewSendingStatus === RequestStatus.Rejected) {
-      toast.error('Something went wrong, please try again');
+      toast.error('Произошла ошибка, попробуйте снова');
     }
+    dispatch(resetReviewSendingStatus());
   }, [dispatch, id, reviewSendingStatus]);
 
   return (

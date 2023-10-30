@@ -5,7 +5,7 @@ import { AppRoute, RequestStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
   getFavorites,
-  getFetchingStatus,
+  getFavoriresFetchingStatus,
 } from '../../store/favorites-data/favorites-data.selectors';
 import FavoritesEmpty from '../../components/favorites-empty/favorites-empty';
 import FavoritesSection from '../../components/favorites-section/favorites-section';
@@ -21,7 +21,7 @@ function FavoritesPage(): JSX.Element {
   }, [dispatch]);
 
   const favorites = useAppSelector(getFavorites);
-  const favoritesFetchingStatus = useAppSelector(getFetchingStatus);
+  const favoritesFetchingStatus = useAppSelector(getFavoriresFetchingStatus);
 
   if (favoritesFetchingStatus === RequestStatus.Pending) {
     return <Loader />;

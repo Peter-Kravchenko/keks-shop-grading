@@ -1,24 +1,50 @@
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { getReviewsCountOnPage } from '../../store/app-process/app-process.selectors';
 import { TReview } from '../../types/review';
 import ShowMoreButton from '../buttons/show-more-button/show-more-button';
 import Review from '../review/review';
+import { resetReviewsCountAction } from '../../store/app-process/app-process.slice';
+import { getReviewsFetchingStatus } from '../../store/reviews-data/reviews-data.selectors';
+import { RequestStatus } from '../../const';
+import Loader from '../loader/loader';
 
 type TReviewsListProps = {
   reviews: TReview[];
 };
 function ReviewsList({ reviews }: TReviewsListProps): JSX.Element {
+  const dispatch = useAppDispatch();
+
+  const reviewsFetchingStatus = useAppSelector(getReviewsFetchingStatus);
+
+  const maxReviewsCountOnPage = useAppSelector(getReviewsCountOnPage);
+  const reviewsOnPage = reviews.slice(
+    0,
+    Math.min(reviews.length, maxReviewsCountOnPage)
+  );
+  const isShowMore = reviews.length > reviewsOnPage.length;
+
+  useEffect(() => {
+    dispatch(resetReviewsCountAction());
+  }, [dispatch]);
+
+  if (reviewsFetchingStatus === RequestStatus.Pending) {
+    return <Loader />;
+  }
+
   return (
     <div>
-      {reviews.length > 0 ? (
+      {reviewsOnPage.length > 0 ? (
         <section className="comments">
           <h2 className="visually-hidden">Список комментариев</h2>
           <div className="container">
             <div className="comments__wrapper">
-              {reviews.map((review) => (
+              {reviewsOnPage.map((review) => (
                 <Review key={review.id} review={review} />
               ))}
             </div>
             <div className="comments__show-more">
-              <ShowMoreButton reviewBlock />
+              {isShowMore ? <ShowMoreButton reviewBlock /> : null}
             </div>
           </div>
         </section>

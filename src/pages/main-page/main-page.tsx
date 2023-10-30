@@ -3,7 +3,7 @@ import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import { useAppSelector } from '../../hooks';
 import {
-  getFetchingStatus,
+  getProductsFetchingStatus,
   getProducts,
 } from '../../store/products-data/products-data.selectors';
 import RandomCardsLict from '../../components/random-cards-list/random-cards-list';
@@ -15,7 +15,7 @@ import LastReview from '../../components/last-review/last-review';
 
 function MainPage(): JSX.Element {
   const products = useAppSelector(getProducts);
-  const productsFetchingStatus = useAppSelector(getFetchingStatus);
+  const productsFetchingStatus = useAppSelector(getProductsFetchingStatus);
 
   if (productsFetchingStatus === RequestStatus.Pending) {
     return <Loader />;

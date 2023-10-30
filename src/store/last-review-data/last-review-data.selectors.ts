@@ -7,7 +7,7 @@ export const getLastReview = createSelector(
   (state: TLastReviewData) => state.lastReview
 );
 
-export const getFetchingStatus = createSelector(
+export const getLastReviewFetchingStatus = createSelector(
   (state: TAppState) => state[NameSpace.LastReview],
   (state: TLastReviewData) => state.fetchingStatus
 );

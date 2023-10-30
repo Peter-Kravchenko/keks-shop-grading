@@ -1,7 +1,7 @@
 import { RequestStatus } from '../../const';
 import { useAppSelector } from '../../hooks';
 import {
-  getFetchingStatus,
+  getLastReviewFetchingStatus,
   getLastReview,
 } from '../../store/last-review-data/last-review-data.selectors';
 import Loader from '../loader/loader';
@@ -9,7 +9,7 @@ import Review from '../review/review';
 
 function LastReview() {
   const lastReview = useAppSelector(getLastReview);
-  const lastReviewFetchingStatus = useAppSelector(getFetchingStatus);
+  const lastReviewFetchingStatus = useAppSelector(getLastReviewFetchingStatus);
 
   if (lastReviewFetchingStatus === RequestStatus.Pending) {
     return <Loader />;

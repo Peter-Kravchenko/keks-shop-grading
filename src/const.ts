@@ -85,10 +85,20 @@ export enum RatingBlock {
   product = 'product',
 }
 
-export enum defaultCoordinates {
+export enum DefaultCoordinates {
   latitude = 59.966,
   longitude = 30.3,
   zoom = 14,
+}
+
+export enum ProductsCount {
+  onFirstLoad = 6,
+  onShowMoreClick = 6,
+}
+
+export enum ReviewsCount {
+  onFirstLoad = 2,
+  onShowMoreClick = 2,
 }
 
 export const ratingMap = {

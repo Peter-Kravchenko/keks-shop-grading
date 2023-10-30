@@ -7,12 +7,12 @@ export const getReviews = createSelector(
   (state: TReviewData) => state.reviews
 );
 
-export const getFetchingStatus = createSelector(
+export const getReviewsFetchingStatus = createSelector(
   (state: TAppState) => state[NameSpace.Reviews],
   (state: TReviewData) => state.fetchingStatus
 );
 
-export const getSendingStatus = createSelector(
+export const getReviewSendingStatus = createSelector(
   (state: TAppState) => state[NameSpace.Reviews],
   (state: TReviewData) => state.sendingStatus
 );

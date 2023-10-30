@@ -10,6 +10,7 @@ export type TAppDispatch = typeof store.dispatch;
 
 export type TAppProcess = {
   productsCountOnPage: number;
+  reviewsCountOnPage: number;
 };
 
 export type TProductsData = {
@@ -29,6 +30,7 @@ export type TFavoritesData = {
 
 export type TReviewData = {
   reviews: TReview[];
+  review: TReview[];
   fetchingStatus: RequestStatus;
   sendingStatus: RequestStatus;
 };

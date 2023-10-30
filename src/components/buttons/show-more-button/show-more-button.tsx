@@ -1,6 +1,9 @@
 import cn from 'classnames';
 import { useAppDispatch } from '../../../hooks';
-import { showMoreProductsAction } from '../../../store/app-process/app-process.slice';
+import {
+  showMoreProductsAction,
+  showMoreReviewsAction,
+} from '../../../store/app-process/app-process.slice';
 
 type ShowMoreButtonProps = {
   reviewBlock?: boolean;
@@ -13,6 +16,9 @@ function ShowMoreButton({
   const handleShowMoreClick = () => {
     if (!reviewBlock) {
       dispatch(showMoreProductsAction());
+    }
+    if (reviewBlock) {
+      dispatch(showMoreReviewsAction());
     }
   };
 

@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 
 import { TLocation } from '../../types/map';
 import useMap from '../../hooks/use-map/use-map';
-import { defaultCoordinates, locations } from '../../const';
+import { DefaultCoordinates, locations } from '../../const';
 
 type IconConfig = {
   url: string;
@@ -65,8 +65,8 @@ function MapDetails({ activeLocation }: MapWrapperProps): JSX.Element {
           .addTo(markerLayer);
 
         map.setView(
-          [defaultCoordinates.latitude, defaultCoordinates.longitude],
-          defaultCoordinates.zoom
+          [DefaultCoordinates.latitude, DefaultCoordinates.longitude],
+          DefaultCoordinates.zoom
         );
       });
       return () => {

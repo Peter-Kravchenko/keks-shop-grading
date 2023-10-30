@@ -6,3 +6,8 @@ export const getProductsCounOnPage = createSelector(
   (state: TAppState) => state[NameSpace.App],
   (state: TAppProcess) => state.productsCountOnPage
 );
+
+export const getReviewsCountOnPage = createSelector(
+  (state: TAppState) => state[NameSpace.App],
+  (state: TAppProcess) => state.reviewsCountOnPage
+);

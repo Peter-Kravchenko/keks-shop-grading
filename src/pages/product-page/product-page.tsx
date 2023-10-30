@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
 import { fetchProduct, fetchReviews } from '../../store/api-actions';
 import {
-  getFetchingStatus,
+  getProductFetchingStatus,
   getProduct,
 } from '../../store/product-data/product-data.selectors';
 import { AuthorizationStatus, RequestStatus } from '../../const';
@@ -33,7 +33,7 @@ function ProductPage({ authStatus }: ProductPageProps): JSX.Element {
   }, [dispatch, id]);
 
   const product = useAppSelector(getProduct);
-  const productFetchingStatus = useAppSelector(getFetchingStatus);
+  const productFetchingStatus = useAppSelector(getProductFetchingStatus);
 
   useEffect(() => {
     if (id && product) {

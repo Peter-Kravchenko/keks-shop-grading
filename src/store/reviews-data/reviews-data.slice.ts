@@ -5,6 +5,7 @@ import { NameSpace, RequestStatus } from '../../const';
 
 const initialState: TReviewData = {
   reviews: [],
+  review: [],
   fetchingStatus: RequestStatus.Idle,
   sendingStatus: RequestStatus.Idle,
 };
@@ -12,7 +13,11 @@ const initialState: TReviewData = {
 export const reviewsData = createSlice({
   name: NameSpace.Reviews,
   initialState,
-  reducers: {},
+  reducers: {
+    resetReviewSendingStatus(state) {
+      state.sendingStatus = RequestStatus.Idle;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchReviews.pending, (state) => {
@@ -29,7 +34,7 @@ export const reviewsData = createSlice({
         state.sendingStatus = RequestStatus.Pending;
       })
       .addCase(postReview.fulfilled, (state, action) => {
-        state.reviews = action.payload;
+        state.review = action.payload;
         state.sendingStatus = RequestStatus.Success;
       })
       .addCase(postReview.rejected, (state) => {
@@ -37,3 +42,5 @@ export const reviewsData = createSlice({
       });
   },
 });
+
+export const { resetReviewSendingStatus } = reviewsData.actions;

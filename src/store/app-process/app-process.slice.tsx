@@ -1,11 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { NameSpace } from '../../const';
-
-const PRODUCTS_ON_FIRST_LOAD = 6;
-const PRODUCTS_ON_SHOW_MORE_CLICK = 6;
+import { NameSpace, ProductsCount, ReviewsCount } from '../../const';
 
 const initialState = {
-  productsCountOnPage: PRODUCTS_ON_FIRST_LOAD,
+  productsCountOnPage: ProductsCount.onFirstLoad,
+  reviewsCountOnPage: ReviewsCount.onFirstLoad,
 };
 
 export const appProcess = createSlice({
@@ -13,13 +11,23 @@ export const appProcess = createSlice({
   initialState,
   reducers: {
     showMoreProductsAction: (state) => {
-      state.productsCountOnPage += PRODUCTS_ON_SHOW_MORE_CLICK;
+      state.productsCountOnPage += ProductsCount.onShowMoreClick;
     },
     resetProductsCountAction: (state) => {
-      state.productsCountOnPage = PRODUCTS_ON_FIRST_LOAD;
+      state.productsCountOnPage = ProductsCount.onFirstLoad;
+    },
+    showMoreReviewsAction: (state) => {
+      state.reviewsCountOnPage += ReviewsCount.onShowMoreClick;
+    },
+    resetReviewsCountAction: (state) => {
+      state.reviewsCountOnPage = ReviewsCount.onFirstLoad;
     },
   },
 });
 
-export const { showMoreProductsAction, resetProductsCountAction } =
-  appProcess.actions;
+export const {
+  showMoreProductsAction,
+  resetProductsCountAction,
+  showMoreReviewsAction,
+  resetReviewsCountAction,
+} = appProcess.actions;

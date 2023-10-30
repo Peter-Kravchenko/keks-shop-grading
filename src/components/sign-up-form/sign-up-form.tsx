@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { RequestStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getSendingStatus } from '../../store/user-data/user-data.selectors';
+import { getUserSendingStatus } from '../../store/user-data/user-data.selectors';
 import { TSignUpData } from '../../types/sign-in-data';
 import { signUp } from '../../store/api-actions';
 
 function SignUpForm(): JSX.Element {
   const dispatch = useAppDispatch();
-  const signUpSendingStatus = useAppSelector(getSendingStatus);
+  const signUpSendingStatus = useAppSelector(getUserSendingStatus);
 
   const isUIBlocked = signUpSendingStatus === RequestStatus.Pending;
 
