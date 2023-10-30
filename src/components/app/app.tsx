@@ -54,8 +54,8 @@ function App(): JSX.Element {
             path={AppRoute.Favorites}
             element={
               <ProtectedRoute
-                restrictedFor={AuthorizationStatus.Auth}
-                redirectTo={AppRoute.Main}
+                restrictedFor={AuthorizationStatus.NoAuth}
+                redirectTo={AppRoute.Login}
               >
                 <FavoritesPage />
               </ProtectedRoute>
@@ -65,7 +65,7 @@ function App(): JSX.Element {
             path={AppRoute.SignUp}
             element={
               <ProtectedRoute
-                restrictedFor={AuthorizationStatus.Auth} //далее убрать заглушку
+                restrictedFor={AuthorizationStatus.Auth}
                 redirectTo={AppRoute.Main}
               >
                 <SignUpPage />
@@ -76,7 +76,7 @@ function App(): JSX.Element {
             path={AppRoute.Login}
             element={
               <ProtectedRoute
-                restrictedFor={AuthorizationStatus.Auth} //далее убрать заглушку
+                restrictedFor={AuthorizationStatus.Auth}
                 redirectTo={AppRoute.Main}
               >
                 <LoginPage />
