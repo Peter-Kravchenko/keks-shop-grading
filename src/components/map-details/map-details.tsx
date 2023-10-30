@@ -22,7 +22,7 @@ const defaultIconConfig: IconConfig = {
   anchorY: 40,
 };
 
-const activeIconConfig: IconConfig = {
+const productionIconConfig: IconConfig = {
   url: '/img/content/map-marker2.svg',
   width: 40,
   height: 55,
@@ -52,14 +52,14 @@ function MapDetails({ activeLocation }: MapWrapperProps): JSX.Element {
 
       locations.forEach((location) => {
         const marker = new Marker({
-          lat: location.latitude,
-          lng: location.longitude,
+          lat: activeLocation.latitude,
+          lng: activeLocation.longitude,
         });
 
         marker
           .setIcon(
-            location.id === activeLocation?.id
-              ? createIcon(activeIconConfig)
+            location.id === activeLocation.id
+              ? createIcon(productionIconConfig)
               : createIcon(defaultIconConfig)
           )
           .addTo(markerLayer);

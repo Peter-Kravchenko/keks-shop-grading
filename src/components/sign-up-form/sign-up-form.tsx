@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getUserSendingStatus } from '../../store/user-data/user-data.selectors';
 import { TSignUpData } from '../../types/sign-in-data';
 import { signUp } from '../../store/api-actions';
+import { toast } from 'react-toastify';
 
 function SignUpForm(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -40,6 +41,7 @@ function SignUpForm(): JSX.Element {
         password: formData.password,
       })
     );
+    toast.success('Вы успешно зарегистрировались!');
   };
 
   return (
@@ -60,6 +62,7 @@ function SignUpForm(): JSX.Element {
               name="name"
               placeholder="Имя"
               required
+              disabled={isUIBlocked}
             />
           </label>
         </div>
@@ -73,6 +76,7 @@ function SignUpForm(): JSX.Element {
               name="email"
               placeholder="Почта"
               required
+              disabled={isUIBlocked}
             />
           </label>
         </div>
@@ -86,6 +90,7 @@ function SignUpForm(): JSX.Element {
               name="password"
               placeholder="Пароль"
               required
+              disabled={isUIBlocked}
             />
           </label>
         </div>
@@ -101,8 +106,12 @@ function SignUpForm(): JSX.Element {
           </label>
         </div>
       </div>
-      <button className="btn register-page__btn btn--large" type="submit">
-        Зарегистрироваться
+      <button
+        className="btn register-page__btn btn--large"
+        type="submit"
+        disabled={isUIBlocked}
+      >
+        {isUIBlocked ? 'Загрузка...' : 'Зарегистрироваться'}
       </button>
     </form>
   );
