@@ -1,8 +1,10 @@
 import {
   AuthorizationStatus,
-  ProductCategory,
-  ProductType,
+  FilterRatingMap,
+  ProductCategoryMap,
+  ProductTypeMap,
   RequestStatus,
+  SortDateMap,
 } from '../const';
 import { store } from '../store';
 import { TCategories } from './categories';
@@ -18,8 +20,10 @@ export type TAppProcess = {
   productsCountOnPage: number;
   reviewsCountOnPage: number;
   categories: TCategories;
-  activeCategory: ProductCategory | null;
-  activeTypes: ProductType[];
+  activeCategory: ProductCategoryMap | null;
+  activeTypes: ProductTypeMap[];
+  filterByRating: FilterRatingMap;
+  sortByDate: SortDateMap;
 };
 
 export type TProductsData = {

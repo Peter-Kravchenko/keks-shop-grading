@@ -1,11 +1,11 @@
 import cn from 'classnames';
 import { useAppDispatch } from '../../hooks';
 import { setActiveCategory } from '../../store/app-process/app-process.slice';
-import { ProductCategory, ProductCategoryRUS } from '../../const';
+import { ProductCategoryMap, ProductCategoryTranslate } from '../../const';
 
 type CatalogCategoryFilterProps = {
-  components: ProductCategory[];
-  activeCategory: ProductCategory | null;
+  components: ProductCategoryMap[];
+  activeCategory: ProductCategoryMap | null;
 };
 
 function CatalogCategoryFilter({
@@ -40,7 +40,7 @@ function CatalogCategoryFilter({
                 );
               }}
             >
-              {ProductCategoryRUS[component.category]}
+              {ProductCategoryTranslate[component.category]}
             </button>
           </li>
         ))}

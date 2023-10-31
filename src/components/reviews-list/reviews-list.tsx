@@ -4,7 +4,10 @@ import { getReviewsCountOnPage } from '../../store/app-process/app-process.selec
 import { TReview } from '../../types/review';
 import ShowMoreButton from '../buttons/show-more-button/show-more-button';
 import Review from '../review/review';
-import { resetReviewsCountAction } from '../../store/app-process/app-process.slice';
+import {
+  resetFilterSortReviews,
+  resetReviewsCountAction,
+} from '../../store/app-process/app-process.slice';
 
 type TReviewsListProps = {
   reviews: TReview[];
@@ -47,6 +50,7 @@ function ReviewsList({ reviews }: TReviewsListProps): JSX.Element {
           <button
             className="btn btn--second empty-results__button"
             type="button"
+            onClick={() => dispatch(resetFilterSortReviews())}
           >
             Сбросить фильтры
           </button>

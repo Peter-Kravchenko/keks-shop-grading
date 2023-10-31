@@ -1,10 +1,12 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import {
+  FilterRatingMap,
   NameSpace,
-  ProductCategory,
-  ProductType,
+  ProductCategoryMap,
+  ProductTypeMap,
   ProductsCount,
   ReviewsCount,
+  SortDateMap,
 } from '../../const';
 import { fetchCategories } from '../api-actions';
 import { TAppProcess } from '../../types/state';
@@ -15,6 +17,8 @@ const initialState: TAppProcess = {
   categories: [],
   activeCategory: null,
   activeTypes: [],
+  filterByRating: FilterRatingMap.All,
+  sortByDate: SortDateMap.Increase,
 };
 
 export const appProcess = createSlice({
@@ -33,11 +37,11 @@ export const appProcess = createSlice({
     resetReviewsCountAction: (state) => {
       state.reviewsCountOnPage = ReviewsCount.onFirstLoad;
     },
-    setActiveCategory: (state, action: PayloadAction<ProductCategory>) => {
+    setActiveCategory: (state, action: PayloadAction<ProductCategoryMap>) => {
       state.activeCategory = action.payload;
       state.activeTypes = [];
     },
-    setActiveType: (state, action: PayloadAction<ProductType>) => {
+    setActiveType: (state, action: PayloadAction<ProductTypeMap>) => {
       if (state.activeTypes.includes(action.payload)) {
         state.activeTypes = state.activeTypes.filter(
           (type) => type !== action.payload
@@ -49,6 +53,19 @@ export const appProcess = createSlice({
     resetProductFilters: (state) => {
       state.activeCategory = null;
       state.activeTypes = [];
+    },
+    setActiveFilterByRating: (
+      state,
+      action: PayloadAction<FilterRatingMap>
+    ) => {
+      state.filterByRating = action.payload;
+    },
+    setActiveSortByDate: (state, action: PayloadAction<SortDateMap>) => {
+      state.sortByDate = action.payload;
+    },
+    resetFilterSortReviews: (state) => {
+      state.filterByRating = FilterRatingMap.All;
+      state.sortByDate = SortDateMap.Increase;
     },
   },
   extraReducers: (builder) => {
@@ -66,4 +83,7 @@ export const {
   setActiveCategory,
   setActiveType,
   resetProductFilters,
+  setActiveFilterByRating,
+  setActiveSortByDate,
+  resetFilterSortReviews,
 } = appProcess.actions;

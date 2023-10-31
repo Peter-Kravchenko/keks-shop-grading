@@ -1,10 +1,10 @@
-import { ProductCategory, ProductType } from '../const';
+import { ProductCategoryMap, ProductTypeMap } from '../const';
 
 export type TProduct = {
   id: string;
   title: string;
-  category: ProductCategory;
-  type: ProductType;
+  category: ProductCategoryMap;
+  type: ProductTypeMap;
   price: number;
   previewImage: string;
   previewImageWebp: string;

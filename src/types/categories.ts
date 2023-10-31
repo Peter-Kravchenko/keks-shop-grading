@@ -1,6 +1,6 @@
-import { ProductCategory, ProductType } from '../const';
+import { ProductCategoryMap, ProductTypeMap } from '../const';
 
 export type TCategories = {
-  category: ProductCategory;
-  types: ProductType[];
+  category: ProductCategoryMap;
+  types: ProductTypeMap[];
 }[];

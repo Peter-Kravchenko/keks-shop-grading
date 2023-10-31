@@ -1,10 +1,10 @@
-import { ProductType, ProductTypeRUS } from '../../const';
+import { ProductTypeMap, ProductTypeTranslate } from '../../const';
 import { useAppDispatch } from '../../hooks';
 import { setActiveType } from '../../store/app-process/app-process.slice';
 
 type CatalogTypeFilterProps = {
-  types: ProductType[];
-  activeType: ProductType[];
+  types: ProductTypeMap[];
+  activeType: ProductTypeMap[];
 };
 
 function CatalogTypeFilter({ types, activeType }: CatalogTypeFilterProps) {
@@ -36,7 +36,7 @@ function CatalogTypeFilter({ types, activeType }: CatalogTypeFilterProps) {
                 className="custom-toggle__label"
                 htmlFor={`catalog-second-level-id-${type}`}
               >
-                {ProductTypeRUS[type]}
+                {ProductTypeTranslate[type]}
               </label>
             </div>
           </li>

@@ -26,3 +26,13 @@ export const getActiveType = createSelector(
   (state: TAppState) => state[NameSpace.App],
   (state: TAppProcess) => state.activeTypes
 );
+
+export const getFilterByRating = createSelector(
+  (state: TAppState) => state[NameSpace.App],
+  (state: TAppProcess) => state.filterByRating
+);
+
+export const getSortByDate = createSelector(
+  (state: TAppState) => state[NameSpace.App],
+  (state: TAppProcess) => state.sortByDate
+);

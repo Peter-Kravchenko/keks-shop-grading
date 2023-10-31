@@ -1,33 +1,34 @@
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchProduct, fetchReviews } from '../../store/api-actions';
 import {
   getProductFetchingStatus,
   getProduct,
 } from '../../store/product-data/product-data.selectors';
-import { AuthorizationStatus, RequestStatus } from '../../const';
+import { RequestStatus } from '../../const';
 import {
   getReviews,
   getReviewsFetchingStatus,
 } from '../../store/reviews-data/reviews-data.selectors';
 import Footer from '../../components/footer/footer';
 import ReviewForm from '../../components/review-form/review-form';
-import ReviewsFilterSort from '../../components/reviews-filter-sort/reviews-filter-sort';
+import ReviewsFilter from '../../components/reviews-filter/reviews-filter';
 import ProductDetails from '../../components/product-details/product-details';
 import BackButton from '../../components/buttons/back-button/back-button';
 import Header from '../../components/header/header';
 import Loader from '../../components/loader/loader';
 import ReviewsList from '../../components/reviews-list/reviews-list';
+import {
+  getFilterByRating,
+  getSortByDate,
+} from '../../store/app-process/app-process.selectors';
+import { filterByRating, sortByDate } from '../../utils/utils';
+import { resetFilterSortReviews } from '../../store/app-process/app-process.slice';
 
-type ProductPageProps = {
-  authStatus: AuthorizationStatus;
-};
-
-function ProductPage({ authStatus }: ProductPageProps): JSX.Element {
-  const { id } = useParams();
+function ProductPage(): JSX.Element {
   const dispatch = useAppDispatch();
-  const isAuth = authStatus === AuthorizationStatus.Auth;
+  const { id } = useParams();
 
   useEffect(() => {
     if (id) {
@@ -46,6 +47,19 @@ function ProductPage({ authStatus }: ProductPageProps): JSX.Element {
 
   const reviews = useAppSelector(getReviews);
   const reviewsFetchingStatus = useAppSelector(getReviewsFetchingStatus);
+  const activeFilterByRating = useAppSelector(getFilterByRating);
+  const activeSortByDate = useAppSelector(getSortByDate);
+
+  const reviewsFilteredByRating = filterByRating[activeFilterByRating](reviews);
+  const reviewsSortedByDate = sortByDate[activeSortByDate](
+    reviewsFilteredByRating
+  );
+
+  const [isReviewFormOpen, setReviewFormOpen] = useState(false);
+
+  useEffect(() => {
+    dispatch(resetFilterSortReviews());
+  }, [dispatch]);
 
   if (
     productFetchingStatus === RequestStatus.Pending ||
@@ -60,10 +74,17 @@ function ProductPage({ authStatus }: ProductPageProps): JSX.Element {
       <main>
         <h1 className="visually-hidden">Карточка: пользователь авторизован</h1>
         <BackButton />
-        <ProductDetails product={product} />
-        {isAuth && <ReviewForm id={product.id} />}
-        <ReviewsFilterSort />
-        <ReviewsList reviews={reviews} />
+        <ProductDetails
+          product={product}
+          isReviewFormOpen={isReviewFormOpen}
+          setReviewFormOpen={setReviewFormOpen}
+        />
+        {isReviewFormOpen && <ReviewForm id={product.id} />}
+        <ReviewsFilter
+          activeFilterByRating={activeFilterByRating}
+          activeSortByDate={activeSortByDate}
+        />
+        <ReviewsList reviews={reviewsSortedByDate} />
       </main>
       <Footer />
     </div>

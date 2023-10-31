@@ -2,11 +2,11 @@ import CatalogCategoryFilter from '../catalog-category-filter/catalog-category-f
 import CatalogTypeFilter from '../catalog-type-filter/catalog-type-filter';
 import { getCategories } from '../../store/app-process/app-process.selectors';
 import { useAppSelector } from '../../hooks';
-import { ProductCategory, ProductType } from '../../const';
+import { ProductCategoryMap, ProductTypeMap } from '../../const';
 
 type CatalogFiltersProps = {
-  activeCategory: ProductCategory | null;
-  activeType: ProductType[];
+  activeCategory: ProductCategoryMap | null;
+  activeType: ProductTypeMap[];
 };
 
 function CatalogFilters({
@@ -17,7 +17,7 @@ function CatalogFilters({
 
   const types = components.find(
     (component) => component.category === activeCategory
-  )?.types as ProductType[];
+  )?.types as ProductTypeMap[];
 
   return (
     <div className="catalog-filter">
