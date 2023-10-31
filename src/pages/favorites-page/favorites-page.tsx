@@ -1,7 +1,7 @@
 import BackButton from '../../components/buttons/back-button/back-button';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
-import { AppRoute, RequestStatus } from '../../const';
+import { RequestStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
   getFavorites,

@@ -46,8 +46,7 @@ function FavoritesSection({ favorites }: FavoritesSectionProps): JSX.Element {
               onClick={() =>
                 favorites.forEach((favorite) => {
                   dispatch(deleteFavorite(favorite.id));
-                })
-              }
+                })}
             >
               Очистить
             </button>

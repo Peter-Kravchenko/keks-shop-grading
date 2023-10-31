@@ -2,9 +2,10 @@ import cn from 'classnames';
 import { useAppDispatch } from '../../hooks';
 import { setActiveCategory } from '../../store/app-process/app-process.slice';
 import { ProductCategoryMap, ProductCategoryTranslate } from '../../const';
+import { TCategories } from '../../types/categories';
 
 type CatalogCategoryFilterProps = {
-  components: ProductCategoryMap[];
+  components: TCategories;
   activeCategory: ProductCategoryMap | null;
 };
 
@@ -23,7 +24,7 @@ function CatalogCategoryFilter({
         {components.map((component) => (
           <li
             className="catalog-filter__item catalog-filter__item--first-level"
-            key={component}
+            key={component.category}
           >
             <button
               className={cn('btn btn--filter-first-level', {
@@ -48,5 +49,6 @@ function CatalogCategoryFilter({
     </div>
   );
 }
+
 
 export default CatalogCategoryFilter;

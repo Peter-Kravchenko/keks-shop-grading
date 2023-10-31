@@ -1,6 +1,6 @@
-import { TAuthData } from './auth-data';
-
 export type TSignUpData = {
+  email: string;
+  password: string;
   name: string;
-  avatar?: File | null;
-} & TAuthData;
+  avatar?: File;
+};

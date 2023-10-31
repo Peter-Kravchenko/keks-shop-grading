@@ -15,8 +15,7 @@ const passwordPattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.{1,}$)/;
 
 const NAME_INVALID_MESSAGE = 'Поле должно включать минимум один символ';
 const EMAIL_INVALID_MESSAGE = 'Введите валидный адрес электронной почты';
-const PASSWORD_INVALID_MESSAGE =
-  'Пароль должен быть без пробелов и содержать хотя бы одну букву и одну цифру.';
+const PASSWORD_INVALID_MESSAGE = 'Пароль должен содержать одну букву и цифру.';
 
 function SignUpForm(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -24,7 +23,7 @@ function SignUpForm(): JSX.Element {
 
   const isUIBlocked = signUpSendingStatus === RequestStatus.Pending;
 
-  const [formData, setFormData] = useState<TSignUpData>({
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
@@ -149,7 +148,7 @@ function SignUpForm(): JSX.Element {
                 }
               )}
             >
-              {isValid.password ? 'Введите вашу почту' : errorMessage}
+              {isValid.password ? 'Введите пароль' : errorMessage}
             </span>
             <input
               onChange={handleFormChange}

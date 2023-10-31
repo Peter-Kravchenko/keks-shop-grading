@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { RequestStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getLoginSendingStatus } from '../../store/user-data/user-data.selectors';
 import { login } from '../../store/api-actions';
 import { TAuthData } from '../../types/auth-data';
+import cn from 'classnames';
+import { toast } from 'react-toastify';
+import { resetLoginSendingStatus } from '../../store/user-data/user-data.slice';
 
 const EMAIL_INVALID_MESSAGE = 'Please enter a valid email address';
 const PASSWORD_INVALID_MESSAGE =
@@ -46,6 +49,19 @@ function LoginForm(): JSX.Element {
     }
   };
 
+  useEffect(() => {
+    if (loginSendingStatus === RequestStatus.Success) {
+      setFormData({
+        email: '',
+        password: '',
+      });
+    }
+    if (loginSendingStatus === RequestStatus.Rejected) {
+      toast.error('Произошла ошибка при попытке входа, попробуйте еще раз');
+    }
+    dispatch(resetLoginSendingStatus());
+  }, [loginSendingStatus, dispatch]);
+
   return (
     <form
       action="#"
@@ -56,7 +72,16 @@ function LoginForm(): JSX.Element {
       <div className="login-page__fields">
         <div className="custom-input login-page__field">
           <label>
-            <span className="custom-input__label">Введите вашу почту</span>
+            <span
+              className={cn(
+                { 'custom-input__label': isValid.email },
+                {
+                  'custom-input__message': !isValid.email,
+                }
+              )}
+            >
+              {isValid.email ? 'Введите вашу почту' : errorMessage}
+            </span>
             <input
               onChange={handleFormChange}
               value={formData.email}
@@ -70,7 +95,16 @@ function LoginForm(): JSX.Element {
         </div>
         <div className="custom-input login-page__field">
           <label>
-            <span className="custom-input__label">Введите ваш пароль</span>
+            <span
+              className={cn(
+                { 'custom-input__label': isValid.password },
+                {
+                  'custom-input__message': !isValid.password,
+                }
+              )}
+            >
+              {isValid.password ? 'Введите пароль' : errorMessage}
+            </span>
             <input
               onChange={handleFormChange}
               value={formData.password}

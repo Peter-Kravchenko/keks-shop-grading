@@ -96,17 +96,17 @@ function ReviewForm({ id }: ReviewFormProps): JSX.Element {
                     <span className="custom-input__message">
                       {formData.rating >= 4 &&
                         formData.positive.length === 0 && (
-                          <b> Расскажите, чем вы остальсь довольны </b>
-                        )}
+                        <b> Расскажите, чем вы остальсь довольны </b>
+                      )}
                       {formData.positive.length !== 0 &&
                         formData.positive.length < MAX_COMMENT_LENGTH && (
-                          <b>
-                            {' '}
+                        <b>
+                          {' '}
                             Осталось{' '}
-                            {MAX_COMMENT_LENGTH - formData.positive.length}{' '}
+                          {MAX_COMMENT_LENGTH - formData.positive.length}{' '}
                             символов{' '}
-                          </b>
-                        )}
+                        </b>
+                      )}
                       {formData.positive.length >= MAX_COMMENT_LENGTH && (
                         <b>
                           {' '}
@@ -131,17 +131,17 @@ function ReviewForm({ id }: ReviewFormProps): JSX.Element {
                       {formData.rating <= 3 &&
                         formData.rating !== 0 &&
                         formData.negative.length === 0 && (
-                          <b> Расскажите, что вам не понравилось </b>
-                        )}
+                        <b> Расскажите, что вам не понравилось </b>
+                      )}
                       {formData.negative.length !== 0 &&
                         formData.negative.length < MAX_COMMENT_LENGTH && (
-                          <b>
-                            {' '}
+                        <b>
+                          {' '}
                             Осталось{' '}
-                            {MAX_COMMENT_LENGTH - formData.negative.length}{' '}
+                          {MAX_COMMENT_LENGTH - formData.negative.length}{' '}
                             символов{' '}
-                          </b>
-                        )}
+                        </b>
+                      )}
                       {formData.negative.length >= MAX_COMMENT_LENGTH && (
                         <b>
                           {' '}
