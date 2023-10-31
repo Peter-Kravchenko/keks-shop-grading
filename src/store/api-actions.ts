@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import { TProduct } from '../types/product';
 import { TPostReview, TReview } from '../types/review';
 import { TAuthData } from '../types/auth-data';
-import { TUser } from '../types/user';
+import { TUser, TUserAvatarData } from '../types/user';
 import { dropToken, saveToken } from '../services/token';
 import { TSignUpData } from '../types/sign-in-data';
 import { redirectToRoute } from './actions';
@@ -131,18 +131,6 @@ export const checkAuth = createAsyncThunk<TUser, undefined, TExtra>(
   }
 );
 
-export const signUp = createAsyncThunk<TUser, TSignUpData, TExtra>(
-  `${NameSpace.User}/signUp`,
-  async ({ name, email, password }, { extra: api }) => {
-    const { data } = await api
-      .post<TUser>(`${APIRoute.SignUp}`, { name, email, password })
-      .catch((err: AxiosError) => {
-        throw toast.error(err.message);
-      });
-    return data;
-  }
-);
-
 export const login = createAsyncThunk<TUser, TAuthData, TExtra>(
   `${NameSpace.User}/login`,
   async ({ email, password }, { dispatch, extra: api }) => {
@@ -160,12 +148,54 @@ export const login = createAsyncThunk<TUser, TAuthData, TExtra>(
   }
 );
 
+export const uploadAvatar = createAsyncThunk<TUserAvatarData, File, TExtra>(
+  `${NameSpace.User}/uploadAvatar`,
+  async (avatar, { extra: api }) => {
+    const formdata = new FormData();
+    formdata.append('avatar', avatar);
+    const { data } = await api
+      .post<TUserAvatarData>(APIRoute.UploadImg, formdata)
+      .catch((err: AxiosError) => {
+        throw toast.error(err.message);
+      });
+    return data;
+  }
+);
+
+export const signUp = createAsyncThunk<TUser, TSignUpData, TExtra>(
+  `${NameSpace.User}/signUp`,
+  async ({ name, email, password, avatar }, { dispatch, extra: api }) => {
+    const { data } = await api
+      .post<TUser>(`${APIRoute.SignUp}`, {
+        name,
+        email,
+        password,
+      })
+      .catch((err: AxiosError) => {
+        throw toast.error(err.message);
+      });
+    if (avatar) {
+      saveToken(data.token);
+      dispatch(uploadAvatar(avatar));
+    }
+    dispatch(login({ email, password }));
+    dispatch(redirectToRoute(AppRoute.Main));
+    toast.success('Вы успешно зарегистрировались!');
+    return data;
+  }
+);
+
 export const logout = createAsyncThunk<void, undefined, TExtra>(
   `${NameSpace.User}/logout`,
   async (_arg, { extra: api }) => {
-    await api.delete(APIRoute.Logout).catch((err: AxiosError) => {
-      throw toast.error(err.message);
-    });
+    await api
+      .delete(APIRoute.Logout)
+      .catch((err: AxiosError) => {
+        throw toast.error(err.message);
+      })
+      .catch((err: AxiosError) => {
+        throw toast.error(err.message);
+      });
     dropToken();
   }
 );

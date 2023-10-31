@@ -5,14 +5,22 @@ import { checkAuth, login, logout, signUp } from '../api-actions';
 
 const initialState: TUserData = {
   user: null,
-  sendingStatus: RequestStatus.Idle,
+  loginSendingStatus: RequestStatus.Idle,
+  signUpSendingStatus: RequestStatus.Idle,
   authorizationStatus: AuthorizationStatus.Unknown,
 };
 
 export const userData = createSlice({
   name: NameSpace.User,
   initialState,
-  reducers: {},
+  reducers: {
+    resetSignUpSendingStatus: (state) => {
+      state.signUpSendingStatus = RequestStatus.Idle;
+    },
+    resetLoginSendingStatus: (state) => {
+      state.loginSendingStatus = RequestStatus.Idle;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(checkAuth.pending, (state) => {
@@ -26,30 +34,33 @@ export const userData = createSlice({
         state.authorizationStatus = AuthorizationStatus.NoAuth;
       })
       .addCase(login.pending, (state) => {
-        state.sendingStatus = RequestStatus.Pending;
+        state.loginSendingStatus = RequestStatus.Pending;
       })
       .addCase(login.fulfilled, (state, action) => {
         state.user = action.payload;
-        state.sendingStatus = RequestStatus.Success;
+        state.loginSendingStatus = RequestStatus.Success;
         state.authorizationStatus = AuthorizationStatus.Auth;
       })
       .addCase(login.rejected, (state) => {
-        state.sendingStatus = RequestStatus.Rejected;
+        state.loginSendingStatus = RequestStatus.Rejected;
       })
       .addCase(logout.fulfilled, (state) => {
         state.user = null;
         state.authorizationStatus = AuthorizationStatus.NoAuth;
       })
       .addCase(signUp.pending, (state) => {
-        state.sendingStatus = RequestStatus.Pending;
+        state.signUpSendingStatus = RequestStatus.Pending;
       })
       .addCase(signUp.fulfilled, (state, action) => {
         state.user = action.payload;
-        state.sendingStatus = RequestStatus.Success;
+        state.signUpSendingStatus = RequestStatus.Success;
         state.authorizationStatus = AuthorizationStatus.Auth;
       })
       .addCase(signUp.rejected, (state) => {
-        state.sendingStatus = RequestStatus.Rejected;
+        state.signUpSendingStatus = RequestStatus.Rejected;
       });
   },
 });
+
+export const { resetSignUpSendingStatus, resetLoginSendingStatus } =
+  userData.actions;

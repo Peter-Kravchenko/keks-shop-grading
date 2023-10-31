@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../../const';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
-import { logout } from '../../../store/api-actions';
+import { checkAuth, logout } from '../../../store/api-actions';
 import { getFavorites } from '../../../store/favorites-data/favorites-data.selectors';
 
 type HeaderButtonsProps = {
@@ -37,7 +37,8 @@ function HeaderButtons({ isAuth }: HeaderButtonsProps): JSX.Element {
                 className="btn btn--second"
                 onClick={(e) => {
                   e.preventDefault();
-                  dispatch(logout);
+                  dispatch(logout());
+                  dispatch(checkAuth());
                 }}
               >
                 Выйти

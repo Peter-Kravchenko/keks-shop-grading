@@ -55,6 +55,7 @@ export type TLastReviewData = {
 
 export type TUserData = {
   user: TUser | null;
-  sendingStatus: RequestStatus;
+  loginSendingStatus: RequestStatus;
+  signUpSendingStatus: RequestStatus;
   authorizationStatus: AuthorizationStatus;
 };

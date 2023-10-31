@@ -31,10 +31,15 @@ function App(): JSX.Element {
     dispatch(fetchProducts());
     dispatch(fetchCategories());
     dispatch(fetchLastReview());
-    dispatch(fetchFavorites());
   }, [dispatch]);
 
   const authStatus = useAppSelector(getAuthStatus);
+
+  useEffect(() => {
+    if (authStatus === AuthorizationStatus.Auth) {
+      dispatch(fetchFavorites());
+    }
+  });
 
   if (authStatus === AuthorizationStatus.Unknown) {
     return <Loader />;
@@ -63,7 +68,7 @@ function App(): JSX.Element {
             element={
               <ProtectedRoute
                 restrictedFor={AuthorizationStatus.Auth}
-                redirectTo={AppRoute.Login}
+                redirectTo={AppRoute.Main}
               >
                 <SignUpPage />
               </ProtectedRoute>

@@ -12,7 +12,12 @@ export const getAuthStatus = createSelector(
   (state: TUserData) => state.authorizationStatus
 );
 
-export const getUserSendingStatus = createSelector(
+export const getSignUpSendingStatus = createSelector(
   (state: TAppState) => state[NameSpace.User],
-  (state: TUserData) => state.sendingStatus
+  (state: TUserData) => state.signUpSendingStatus
+);
+
+export const getLoginSendingStatus = createSelector(
+  (state: TAppState) => state[NameSpace.User],
+  (state: TUserData) => state.loginSendingStatus
 );
