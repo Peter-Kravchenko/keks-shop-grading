@@ -42,7 +42,7 @@ export enum AppRoute {
   Error = '/error-page',
   Favorites = '/favourites',
   Login = '/login',
-  Main = '/index',
+  Main = '/',
   NotFound = '/404',
   Product = '/product-page',
   SignUp = '/sign-up',

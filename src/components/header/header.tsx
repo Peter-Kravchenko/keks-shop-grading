@@ -23,7 +23,7 @@ function Header(): JSX.Element {
             aria-label="Переход на главную"
           >
             <img
-              src="img/svg/logo.svg"
+              src='/img/svg/logo.svg'
               width={170}
               height={69}
               alt="Кондитерская кекс"
