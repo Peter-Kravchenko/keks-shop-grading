@@ -17,7 +17,7 @@ function Review({ review }: TReviewProps): JSX.Element {
         <span className="review__author">
           Уважаемый(-ая) {review.user.name}
         </span>
-        <RatingStars rating={review.rating} ratingBlock={RatingBlock.review} />
+        <RatingStars rating={review.rating} ratingBlock={RatingBlock.Review} />
         <div className="review__text-wrapper">
           {review.positive && <p className="review__text">{review.positive}</p>}
           {review.negative && <p className="review__text">{review.negative}</p>}

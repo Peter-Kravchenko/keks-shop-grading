@@ -65,8 +65,8 @@ function MapDetails({ activeLocation }: MapWrapperProps): JSX.Element {
           .addTo(markerLayer);
 
         map.setView(
-          [DefaultCoordinates.latitude, DefaultCoordinates.longitude],
-          DefaultCoordinates.zoom
+          [DefaultCoordinates.Latitude, DefaultCoordinates.Longitude],
+          DefaultCoordinates.Zoom
         );
       });
       return () => {

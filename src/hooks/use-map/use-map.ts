@@ -14,10 +14,10 @@ function useMap({ mapRef }: UseMapProps) {
     if (mapRef.current !== null && !isRenderedRef.current) {
       const instance = new Map(mapRef.current, {
         center: {
-          lat: DefaultCoordinates.latitude,
-          lng: DefaultCoordinates.longitude,
+          lat: DefaultCoordinates.Latitude,
+          lng: DefaultCoordinates.Longitude,
         },
-        zoom: DefaultCoordinates.zoom,
+        zoom: DefaultCoordinates.Zoom,
       });
 
       const layer = new TileLayer(TITLE_LAYER, {

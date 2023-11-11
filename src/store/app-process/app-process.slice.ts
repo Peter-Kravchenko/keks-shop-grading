@@ -12,8 +12,8 @@ import { fetchCategories } from '../api-actions';
 import { TAppProcess } from '../../types/state';
 
 const initialState: TAppProcess = {
-  productsCountOnPage: ProductsCount.onFirstLoad,
-  reviewsCountOnPage: ReviewsCount.onFirstLoad,
+  productsCountOnPage: ProductsCount.OnFirstLoad,
+  reviewsCountOnPage: ReviewsCount.OnFirstLoad,
   categories: [],
   activeCategory: null,
   activeTypes: [],
@@ -26,16 +26,16 @@ export const appProcess = createSlice({
   initialState,
   reducers: {
     showMoreProductsAction: (state) => {
-      state.productsCountOnPage += ProductsCount.onShowMoreClick;
+      state.productsCountOnPage += ProductsCount.OnShowMoreClick;
     },
     resetProductsCountAction: (state) => {
-      state.productsCountOnPage = ProductsCount.onFirstLoad;
+      state.productsCountOnPage = ProductsCount.OnFirstLoad;
     },
     showMoreReviewsAction: (state) => {
-      state.reviewsCountOnPage += ReviewsCount.onShowMoreClick;
+      state.reviewsCountOnPage += ReviewsCount.OnShowMoreClick;
     },
     resetReviewsCountAction: (state) => {
-      state.reviewsCountOnPage = ReviewsCount.onFirstLoad;
+      state.reviewsCountOnPage = ReviewsCount.OnFirstLoad;
     },
     setActiveCategory: (state, action: PayloadAction<ProductCategoryMap>) => {
       state.activeCategory = action.payload;

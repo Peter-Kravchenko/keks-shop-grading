@@ -14,7 +14,7 @@ function RatingStars({
   ratingBlock,
   reviewCount,
 }: RatingStarsProps): JSX.Element {
-  const isProduct = ratingBlock === RatingBlock.product;
+  const isProduct = ratingBlock === RatingBlock.Product;
 
   return (
     <div className={cn('star-rating', { 'star-rating--big': isProduct })}>

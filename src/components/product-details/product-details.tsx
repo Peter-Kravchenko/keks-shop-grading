@@ -50,7 +50,7 @@ function ProductDetails({
             <div className="item-details__review-wrapper">
               <RatingStars
                 rating={product.rating}
-                ratingBlock={RatingBlock.product}
+                ratingBlock={RatingBlock.Product}
                 reviewCount={product.reviewCount}
               />
               <div className="item-details__text-wrapper">

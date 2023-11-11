@@ -89,24 +89,24 @@ export enum ProductBlock {
 }
 
 export enum RatingBlock {
-  review = 'review',
-  product = 'product',
+  Review = 'review',
+  Product = 'product',
 }
 
 export enum DefaultCoordinates {
-  latitude = 59.966,
-  longitude = 30.3,
-  zoom = 14,
+  Latitude = 59.966,
+  Longitude = 30.3,
+  Zoom = 14,
 }
 
 export enum ProductsCount {
-  onFirstLoad = 6,
-  onShowMoreClick = 6,
+  OnFirstLoad = 6,
+  OnShowMoreClick = 6,
 }
 
 export enum ReviewsCount {
-  onFirstLoad = 2,
-  onShowMoreClick = 2,
+  OnFirstLoad = 2,
+  OnShowMoreClick = 2,
 }
 
 export enum FilterRatingMap {
