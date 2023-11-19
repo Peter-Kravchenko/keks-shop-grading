@@ -1,7 +1,8 @@
 import dayjs from 'dayjs';
-import { FilterRatingMap, SortDateMap } from '../const';
+import { DESCRIPTION_LENGTH, FilterRatingMap, SortDateMap } from '../const';
 import { TProducts } from '../types/products';
 import { TReview } from '../types/review';
+import { TProduct } from '../types/product';
 
 export const addPluralEnding = (count: number) => {
   if (count === 1) {
@@ -16,18 +17,26 @@ export const addPluralEnding = (count: number) => {
 export const addSpaceInNumber = (price: number) =>
   price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 
-function sortIncrease(reviewA: TReview, reviewB: TReview) {
-  return dayjs(reviewB.isoDate).diff(reviewA.isoDate);
-}
-
-function sortDecrease(reviewA: TReview, reviewB: TReview) {
-  return dayjs(reviewA.isoDate).diff(reviewB.isoDate);
-}
+export const limitDescriptionLength = (
+  description: TProduct['description']
+) => {
+  if (description.length > DESCRIPTION_LENGTH) {
+    return `${description.slice(0, DESCRIPTION_LENGTH)}...`;
+  }
+  return description;
+};
 
 export const getThreeRandomProducts = (products: TProducts[]) => {
   const randomProducts = [...products];
   return randomProducts.sort(() => Math.random() - 0.5).slice(0, 3);
 };
+
+const sortIncrease = (reviewA: TReview, reviewB: TReview) =>
+  dayjs(reviewB.isoDate).diff(reviewA.isoDate);
+
+function sortDecrease(reviewA: TReview, reviewB: TReview) {
+  return dayjs(reviewA.isoDate).diff(reviewB.isoDate);
+}
 
 export const filterByRating = {
   [FilterRatingMap.All]: (reviews: TReview[]) => reviews,

@@ -3,10 +3,10 @@ import { AppRoute, AuthorizationStatus, RatingBlock } from '../../const';
 import { useAppSelector } from '../../hooks';
 import { getAuthStatus } from '../../store/user-data/user-data.selectors';
 import { TProduct } from '../../types/product';
-import FavoritesButton from '../buttons/favorites-button/favorites-button';
-import ReadMoreButton from '../buttons/read-more-button/read-more-button';
-import RatingStars from '../rating-stars/rating-stars';
 import { addSpaceInNumber } from '../../utils/utils';
+import FavoritesButton from '../buttons/favorites-button/favorites-button';
+import RatingStars from '../rating-stars/rating-stars';
+import DescriptionDetails from '../description-details/description-details';
 
 type ProductDetailsProps = {
   product: TProduct;
@@ -58,12 +58,7 @@ function ProductDetails({
                 ratingBlock={RatingBlock.Product}
                 reviewCount={product.reviewCount}
               />
-              <div className="item-details__text-wrapper">
-                <span className="item-details__text">
-                  {product.description}
-                </span>
-                <ReadMoreButton />
-              </div>
+              <DescriptionDetails description={product.description} />
               <div className="item-details__button-wrapper">
                 <FavoritesButton id={product.id} />
                 {isReviewFormOpen ? (
