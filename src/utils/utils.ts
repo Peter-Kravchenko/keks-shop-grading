@@ -13,6 +13,9 @@ export const addPluralEnding = (count: number) => {
   return 'ов';
 };
 
+export const addSpaceInNumber = (price: number) =>
+  price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+
 function sortIncrease(reviewA: TReview, reviewB: TReview) {
   return dayjs(reviewB.isoDate).diff(reviewA.isoDate);
 }

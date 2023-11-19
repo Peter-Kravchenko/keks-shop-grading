@@ -31,7 +31,6 @@ function CatalogCardsList({ products }: CatalogCardsListProps): JSX.Element {
     <section className="catalog">
       <div className="container">
         <h2 className="visually-hidden">Каталог</h2>
-
         {productsOnPage.length === 0 && <ProductNotFound />}
         {productsOnPage.length > 0 && (
           <div className="catalog__wrapper">

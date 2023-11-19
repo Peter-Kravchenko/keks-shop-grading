@@ -6,6 +6,7 @@ import { TProduct } from '../../types/product';
 import FavoritesButton from '../buttons/favorites-button/favorites-button';
 import ReadMoreButton from '../buttons/read-more-button/read-more-button';
 import RatingStars from '../rating-stars/rating-stars';
+import { addSpaceInNumber } from '../../utils/utils';
 
 type ProductDetailsProps = {
   product: TProduct;
@@ -27,10 +28,14 @@ function ProductDetails({
         <div className="item-details__wrapper">
           <div className="item-details__top-wrapper">
             <h2 className="item-details__name">{product.title}</h2>
-            <span className="item-details__price">{product.price} р</span>
+            <span className="item-details__price">
+              {addSpaceInNumber(product.price)} р
+            </span>
           </div>
           <div className="item-details__weight-wrapper">
-            <span className="item-details__weight">{product.weight} грамм</span>
+            <span className="item-details__weight">
+              {addSpaceInNumber(product.weight)} грамм
+            </span>
           </div>
           <div className="item-details__bottom-wrapper">
             <div className="item-details__image-wrapper">

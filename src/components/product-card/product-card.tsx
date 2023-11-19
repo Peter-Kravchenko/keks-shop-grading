@@ -3,6 +3,7 @@ import { AppRoute, ProductBlock } from '../../const';
 import { TProducts } from '../../types/products';
 import { Link } from 'react-router-dom';
 import FavoritesButton from '../buttons/favorites-button/favorites-button';
+import { addSpaceInNumber } from '../../utils/utils';
 
 type ProductCardProps = {
   product: TProducts;
@@ -36,7 +37,9 @@ function ProductCard({ product, productBlock }: ProductCardProps): JSX.Element {
         </Link>
         <FavoritesButton id={product.id} />
         {productBlock === ProductBlock.Catalog && (
-          <span className="card-item__price">{product.price} p</span>
+          <span className="card-item__price">
+            {addSpaceInNumber(product.price)} p
+          </span>
         )}
         <Link
           to={`${AppRoute.Product}/${product.id}`}
