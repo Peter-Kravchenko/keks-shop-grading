@@ -24,13 +24,16 @@ function ReviewForm({ id }: ReviewFormProps): JSX.Element {
 
   const isUIBlocked = reviewSendingStatus === RequestStatus.Pending;
   const formDisabled = () => {
-    if (formData.rating >= 4 || formData.rating === 0) {
+    if (formData.rating === 0) {
+      return true;
+    }
+    if (formData.rating >= 4) {
       return (
         reviewSendingStatus === RequestStatus.Pending ||
         formData.positive.length >= MAX_COMMENT_LENGTH ||
         formData.positive.length === 0
       );
-    } else if (formData.rating <= 3 || formData.rating === 0) {
+    } else if (formData.rating <= 3) {
       return (
         reviewSendingStatus === RequestStatus.Pending ||
         formData.negative.length >= MAX_COMMENT_LENGTH ||
