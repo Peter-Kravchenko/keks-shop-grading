@@ -15,7 +15,7 @@ const passwordPattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.{1,}$)/;
 
 const NAME_INVALID_MESSAGE = 'Поле должно включать минимум один символ';
 const EMAIL_INVALID_MESSAGE = 'Введите валидный адрес электронной почты';
-const PASSWORD_INVALID_MESSAGE = 'Пароль должен содержать одну букву и цифру.';
+const PASSWORD_INVALID_MESSAGE = 'Пароль должен содержать одну букву и цифру';
 
 function SignUpForm(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -181,9 +181,7 @@ function SignUpForm(): JSX.Element {
       <button
         className="btn register-page__btn btn--large"
         type="submit"
-        disabled={
-          isUIBlocked || !isValid.name || !isValid.email || !isValid.password
-        }
+        disabled={isUIBlocked}
       >
         {isUIBlocked ? 'Загрузка...' : 'Зарегистрироваться'}
       </button>

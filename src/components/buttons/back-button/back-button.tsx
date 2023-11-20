@@ -1,8 +1,12 @@
+import { useNavigate } from 'react-router-dom';
+
 function BackButton(): JSX.Element {
+  const navigate = useNavigate();
+
   return (
     <div className="back-link">
       <div className="container">
-        <a className="back-link__link" onClick={() => window.history.back()}>
+        <a className="back-link__link" onClick={() => navigate(-1)}>
           Назад
           <svg
             className="back-link__icon"
